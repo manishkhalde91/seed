@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.company.seed.common.logging.RequestLoggingFilterTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-17T11:35:17.241Z" hostname="IDXPUNMAC054L.local" time="0.001">
+  <properties/>
+  <testcase name="actuatorRequestIsNotLogged(CapturedOutput)" classname="com.company.seed.common.logging.RequestLoggingFilterTest" time="0.0"/>
+  <testcase name="rawActuatorPrefixThatNormalisesToAnotherRouteIsLogged(CapturedOutput)" classname="com.company.seed.common.logging.RequestLoggingFilterTest" time="0.001"/>
+  <system-out><![CDATA[{"@timestamp":"2026-11-17T11:35:17.242486Z","log":{"level":"INFO","logger":"com.company.seed.common.logging.RequestLoggingFilter"},"process":{"pid":7240,"thread":{"name":"Test worker"}},"service":{"name":"seed","node":{}},"message":"GET UNMATCHED -> 200 in 0 ms","http":{"request":{"method":"GET"},"route":"UNMATCHED","response":{"status_code":200}},"event":{"duration":10959},"ecs":{"version":"8.11"}}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

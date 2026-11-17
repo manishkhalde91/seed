@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - reChecksWhileDownAndKeepsUpOnceReached()</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<div class="breadcrumbs">
+<a class="breadcrumb" href="../index.html">all</a> &gt; 
+<a class="breadcrumb" href="index.html">com.company.seed.config.SchemaVersionHealthIndicatorIT</a> &gt; 
+<span class="breadcrumb">reChecksWhileDownAndKeepsUpOnceReached()</span>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="successGroup" href="#">Gradle Test Run :integrationTest</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Gradle Test Run :integrationTest</h2>
+<h1>reChecksWhileDownAndKeepsUpOnceReached()</h1>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="" href="#">summary</a>
+</li>
+<li>
+<a class="" href="#">standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>summary</h2>
+<div>
+<div class="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>skipped</p>
+</div>
+</td>
+<td>
+<div class="infoBox duration">
+<div class="counter">0.298s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="tab">
+<h2>standard output</h2>
+<span class="code">
+<div class="clipboard-copy-btn-container">
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="root-0-test-stdout-reChecksWhileDownAndKeepsUpOnceReached()">Copy</button>
+</div>
+<pre id="root-0-test-stdout-reChecksWhileDownAndKeepsUpOnceReached()">{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.777344Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.FlywayExecutor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Database: jdbc:postgresql://localhost:63107/schema_indicator?options=-c%20statement_timeout=15s&amp;sslmode=prefer&amp;logServerErrorDetail=false (PostgreSQL 16.16)&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.783661Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.database.base.Schema&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Creating schema \&quot;common\&quot; ...&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.784437Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.database.base.Schema&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Creating schema \&quot;sample\&quot; ...&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.785841Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Creating Schema History table \&quot;common\&quot;.\&quot;flyway_schema_history\&quot; ...&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.800981Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.command.DbMigrate&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Current version of schema \&quot;common\&quot;: null&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.802282Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.command.DbMigrate&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Migrating schema \&quot;common\&quot; to version \&quot;202611160900 - common grant app role\&quot;&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.807684Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.command.DbMigrate&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Migrating schema \&quot;common\&quot; to version \&quot;202611161100 - common create idempotency record\&quot;&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.815349Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.command.DbMigrate&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Migrating schema \&quot;common\&quot; to version \&quot;202611161600 - common add idempotency caller\&quot;&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.821272Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.command.DbMigrate&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Migrating schema \&quot;common\&quot; to version \&quot;202611171000 - common create event publication\&quot;&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.826600Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.command.DbMigrate&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Migrating schema \&quot;common\&quot; to version \&quot;202611171005 - common create operation\&quot;&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.831017Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.command.DbMigrate&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Successfully applied 5 migrations to schema \&quot;common\&quot;, now at version v202611171005 (execution time 00:00.012s)&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.841387Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.FlywayExecutor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Database: jdbc:postgresql://localhost:63107/schema_indicator?options=-c%20statement_timeout=15s&amp;sslmode=prefer&amp;logServerErrorDetail=false (PostgreSQL 16.16)&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.861052Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.FlywayExecutor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Database: jdbc:postgresql://localhost:63107/schema_indicator?options=-c%20statement_timeout=15s&amp;sslmode=prefer&amp;logServerErrorDetail=false (PostgreSQL 16.16)&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.868084Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.command.DbValidate&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Successfully validated 7 migrations (execution time 00:00.002s)&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.874459Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.command.DbMigrate&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Current version of schema \&quot;common\&quot;: 202611171005&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.875372Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.command.DbMigrate&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Migrating schema \&quot;common\&quot; to version \&quot;209901010000 - fixture create pending marker\&quot;&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.875893Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;+----------+\n| ?column? |\n+----------+\n| 1        |\n+----------+\n&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.878804Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.command.DbMigrate&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Successfully applied 1 migration to schema \&quot;common\&quot;, now at version v209901010000 (execution time 00:00.001s)&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.883218Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.FlywayExecutor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Database: jdbc:postgresql://localhost:63107/schema_indicator?options=-c%20statement_timeout=15s&amp;sslmode=prefer&amp;logServerErrorDetail=false (PostgreSQL 16.16)&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:02.904486Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.FlywayExecutor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;Test worker&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Database: jdbc:postgresql://localhost:63107/schema_indicator?options=-c%20statement_timeout=15s&amp;sslmode=prefer&amp;logServerErrorDetail=false (PostgreSQL 16.16)&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+</pre>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.8.2</a> at 17-Nov-2026, 5:06:08 pm</p>
+</div>
+</div>
+</body>
+</html>

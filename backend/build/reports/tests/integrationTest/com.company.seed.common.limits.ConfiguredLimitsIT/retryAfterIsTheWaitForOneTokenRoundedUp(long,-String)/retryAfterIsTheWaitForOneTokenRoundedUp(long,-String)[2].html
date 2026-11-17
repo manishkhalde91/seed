@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - retryAfterIsTheWaitForOneTokenRoundedUp(long, String)[2]</title>
+<link href="../../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<div class="breadcrumbs">
+<a class="breadcrumb" href="../../index.html">all</a> &gt; 
+<a class="breadcrumb" href="../index.html">com.company.seed.common.limits.ConfiguredLimitsIT</a> &gt; 
+<a class="breadcrumb" href="index.html">retryAfterIsTheWaitForOneTokenRoundedUp(long, String)</a> &gt; 
+<span class="breadcrumb">retryAfterIsTheWaitForOneTokenRoundedUp(long, String)[2]</span>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="successGroup" href="#">Gradle Test Run :integrationTest</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Gradle Test Run :integrationTest</h2>
+<h1>6th write &quot;500&quot; ms after the 5th -&gt; Retry-After: &quot;12&quot;</h1>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="" href="#">summary</a>
+</li>
+<li>
+<a class="" href="#">standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>summary</h2>
+<div>
+<div class="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>skipped</p>
+</div>
+</td>
+<td>
+<div class="infoBox duration">
+<div class="counter">0.012s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="tab">
+<h2>standard output</h2>
+<span class="code">
+<div class="clipboard-copy-btn-container">
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="root-0-test-stdout-retryAfterIsTheWaitForOneTokenRoundedUp(long, String)[2]">Copy</button>
+</div>
+<pre id="root-0-test-stdout-retryAfterIsTheWaitForOneTokenRoundedUp(long, String)[2]">{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:29.001723Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-11-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /probe-limits/writes -&gt; 201 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;limits-4a4ea64e-3b3b-4ebc-adcc-699ec01d2707&quot;},&quot;correlationId&quot;:&quot;01a1e395-ae80-7196-935b-6dbac68fd036&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;/probe-limits/writes&quot;,&quot;response&quot;:{&quot;status_code&quot;:201}},&quot;event&quot;:{&quot;duration&quot;:815042},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:29.003560Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-11-exec-2&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /probe-limits/writes -&gt; 201 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;limits-4a4ea64e-3b3b-4ebc-adcc-699ec01d2707&quot;},&quot;correlationId&quot;:&quot;01a1e395-ae80-7197-bf9f-72bb51fee2eb&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;/probe-limits/writes&quot;,&quot;response&quot;:{&quot;status_code&quot;:201}},&quot;event&quot;:{&quot;duration&quot;:579250},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:29.005178Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-11-exec-3&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /probe-limits/writes -&gt; 201 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;limits-4a4ea64e-3b3b-4ebc-adcc-699ec01d2707&quot;},&quot;correlationId&quot;:&quot;01a1e395-ae80-7198-9c04-3962c0ec5030&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;/probe-limits/writes&quot;,&quot;response&quot;:{&quot;status_code&quot;:201}},&quot;event&quot;:{&quot;duration&quot;:490667},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:29.006606Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-11-exec-4&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /probe-limits/writes -&gt; 201 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;limits-4a4ea64e-3b3b-4ebc-adcc-699ec01d2707&quot;},&quot;correlationId&quot;:&quot;01a1e395-ae80-7199-bdc0-df1f8988adc6&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;/probe-limits/writes&quot;,&quot;response&quot;:{&quot;status_code&quot;:201}},&quot;event&quot;:{&quot;duration&quot;:482917},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:29.008165Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-11-exec-9&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /probe-limits/writes -&gt; 201 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;limits-4a4ea64e-3b3b-4ebc-adcc-699ec01d2707&quot;},&quot;correlationId&quot;:&quot;01a1e395-ae80-719a-8d1b-c59584406282&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;/probe-limits/writes&quot;,&quot;response&quot;:{&quot;status_code&quot;:201}},&quot;event&quot;:{&quot;duration&quot;:505917},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:29.009435Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.limits.WriteRateLimitFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-11-exec-8&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /probe-limits/writes rejected: write rate limit reached for user:limits-4a4ea64e-3b3b-4ebc-adcc-699ec01d2707; retry after 12 s&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;limits-4a4ea64e-3b3b-4ebc-adcc-699ec01d2707&quot;},&quot;correlationId&quot;:&quot;01a1e395-b074-77df-9bc4-f9ae0fed5018&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:29.009599Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-11-exec-8&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST UNMATCHED -&gt; 429 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;limits-4a4ea64e-3b3b-4ebc-adcc-699ec01d2707&quot;},&quot;correlationId&quot;:&quot;01a1e395-b074-77df-9bc4-f9ae0fed5018&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;UNMATCHED&quot;,&quot;response&quot;:{&quot;status_code&quot;:429}},&quot;event&quot;:{&quot;duration&quot;:436625},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+</pre>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.8.2</a> at 17-Nov-2026, 5:06:08 pm</p>
+</div>
+</div>
+</body>
+</html>

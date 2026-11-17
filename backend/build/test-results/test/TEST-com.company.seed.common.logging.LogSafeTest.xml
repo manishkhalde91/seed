@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.company.seed.common.logging.LogSafeTest" tests="23" skipped="0" failures="0" errors="0" timestamp="2026-11-17T11:35:17.238Z" hostname="IDXPUNMAC054L.local" time="0.003">
+  <properties/>
+  <testcase name="U+&quot;0000&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.001"/>
+  <testcase name="U+&quot;0009&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;001B&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;001F&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;007F&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;0080&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;0085&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;009F&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="replacesUnicodeLineAndParagraphSeparators()" classname="com.company.seed.common.logging.LogSafeTest" time="0.001"/>
+  <testcase name="U+&quot;202A&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;202B&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;202C&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;202D&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;202E&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;2066&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;2067&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;2068&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="U+&quot;2069&quot;" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="nullStaysNull()" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="replacesCarriageReturnAndLineFeed()" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="truncatesTo200Characters()" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="neverSplitsASurrogatePairWhenTruncating()" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <testcase name="keepsPrintableCharacters()" classname="com.company.seed.common.logging.LogSafeTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,19 @@
+# Snap default customization -- team-editable. Managed alongside snap-customize skill.
+#
+# Annotations-queue fact split: the "load + surface" half moves to activation_steps_append
+# (it is one-time setup); the "on apply -> resolve" half stays a persistent_fact.
+#
+# Merge rules (SNAP): scalars override; arrays append.
+
+[workflow]
+
+activation_steps_append = [
+  "If a file matching {project-root}/**/annotations/annotations.yaml exists, load its entries with status 'open' whose 'file' points at the PRD. These are PM/stakeholder change requests (created via snap-lens). Surface them to the user before making any edit and ask which to incorporate.",
+]
+
+persistent_facts = [
+  "annotations.yaml entries pointing at the PRD are PM/stakeholder change requests on par with acceptance criteria. Reflect only the ones the user confirms. When a confirmed request is reflected in the PRD, edit that YAML entry in place: set status 'resolved' and add a one-line 'resolved_note'. Never apply an annotation the user did not confirm, and never delete entries.",
+
+  # Guardrail — keep unless verified redundant with v6.11 snap-prd Update-intent behaviour.
+  "Under Update intent, always reconcile changes into and save the existing prd.md file in place at its current path — never create a new PRD file or bind a new run folder for an update to an already-existing PRD.",
+]

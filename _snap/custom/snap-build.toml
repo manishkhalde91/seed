@@ -1,0 +1,83 @@
+# Snap default customization -- team-editable. Managed alongside snap-customize skill.
+#
+# Team customization for snap-build (the story, packet, bug-fix and change-request builder).
+#
+# Merge rules (SNAP): scalars override the default; arrays append to the default array.
+
+[workflow]
+
+persistent_facts = [
+  # --- context-lake awareness (replaces the module-doc fact; SnapCT is the only writer of the lake) ---
+  "Ground file paths in the SnapCT context lake, never in guesses. Step-01 asks `{project-root}/_snap/scripts/resolve_artifacts.py` for the feature page that owns the paths you are touching; use the page's `source:` paths and Modules section to find files, then confirm them in the code before writing them into the Code Map. When the resolver returns nothing (no lake, or no feature owns the paths), search the codebase and name the most likely files. Never write vague paths like 'in the lead service'.",
+
+  # --- context-lake write-back (step-04b; the only place Snap writes to the lake) ---
+  "In step-05's completion summary, when step-04b recorded a lake write-back, add one short line: the feature page updated, the rule IDs changed, retired and added, and any shared rule deferred to SnapCT. If the lake sits outside this repository, say the page edit is not in this commit and name the lake path so the human can commit it on the matching branch. If step-04b skipped the write-back because the lake predates the current layout, or because a lake exists but SnapCT is not installed, say so in one soft line. When there is no lake at all, say nothing about a lake.",
+
+  # --- annotations queue (canonical wording) ---
+  "If a file matching {project-root}/**/annotations/annotations.yaml exists, load its entries with status 'open' whose 'file' points at the story or artifacts you are working on; treat them as PM/stakeholder feedback on par with acceptance criteria. When your work addresses one, edit that YAML entry in place: set status 'resolved' and add a one-line 'resolved_note'. Never apply an annotation the user did not confirm, and never delete entries.",
+
+  # --- guardrails (spec 04): warn by default, the person decides; nothing here stops a build on its own ---
+  "In step 03 Verify, run `snap-guard check --diff {baseline_commit}` before the spec's own commands. If `snap-guard` is not installed or cannot run (for example offline), say \"snap-guard: not run\" and continue. If it reports findings, show them and let the person decide; never stop the build for this alone.",
+  "In step 04 review triage, a finding produced by `snap-guard` that is still open from Verify is added to the `## Review Triage Log`. It is deterministic: it may be fixed, or overridden with a reason written to the triage log, and is never marked `false` or `maybe-false`.",
+  "Doubt check: scan the new code comments and your own final summary for doubt phrases (\"may not exist\", \"assuming\", \"not sure\", \"hypothetical\", \"you may need to replace\", \"placeholder\" outside HTML attributes and UI copy). Report each one as a warning in the completion summary. An unresolved doubt is closed by confirming the fact, or by the person accepting it with a reason in the triage log. It never blocks the build.",
+
+  # --- Snap commit lines (Snap-Intent, Snap-Agent, Snap-Model): snap-build stages and waits, it never commits ---
+  "Snap commit lines: snap-build never runs `git commit`. Where step-05 ('Commit and Complete') or step-oneshot ('Commit') tells you to commit, do this instead. When version control is available and a repo has changes from this build, do it for EACH git repo you changed (a multi-repo project can have several: the code repos and the repo that holds the Snap folder, with the specs and the lake page; a single-repo project has one). In each such repo: (1) stage with `git -C <repo> add` every file of this change that belongs to that repo (code, tests, `{spec_file}`, the lake page edit), and no unrelated file; (2) as the very last thing you do in that repo, run `python3 {project-root}/_snap/scripts/snap_trailers.py set --repo <repo> --skill snap-build` plus the values you really have: `--tech-spec {spec_file}` when that file exists; `--spec <folder or SPEC.md path>` when the work came from a snap-spec spec; `--story <id>` or `--requirement <id>` when you have one; `--prompt \"<short title>\"` only when you have none of the others. Use the same values for every repo. Add `--model <your model id>` only when you know it. Never invent a value. The title for `--prompt` is a few plain words, never client names, people, or secrets, because a commit message stays in git history for good. Staging anything in that repo after this call makes the lines be skipped, so call it last for that repo. (3) Do not commit. In the completion summary, say once that the files are staged and not committed, list each repo that has staged files with the command `git -C <repo> commit` (just `git commit` for a single repo), and say the Snap lines will be added to each message. Leave out the commit hash line, and offer the pull-request next action only as something for after the person commits. If the script prints a warning that the commit hook is not installed in a repo, pass that line on to the person. None of this ever blocks the build.",
+]
+
+# --- model tiering for the implementation subagent (was prototyped in the vendored
+#     snap-build/customize.toml; belongs here as a scalar override) ---
+implementation_handoff = """
+Pick the model for the implementation subagent (only when the runtime lets you set one; otherwise ignore this and use the default):
+
+- Read `{spec_file}`'s `## Tasks & Acceptance` and `<frozen-after-approval>` sections first.
+- Use a small, fast model (e.g. Haiku) by default — the spec is a complete checklist and step-04 review with loopback is the safety net.
+- Escalate to a model at the current session's capability (e.g. Sonnet) when ANY of these hold:
+  - the change touches authentication/authorization, concurrency/async, data migrations, money/billing, or cryptography;
+  - the `## Tasks & Acceptance` Execution list has more than 5 tasks;
+  - the spec introduces a pattern the codebase does not already use (per the Code Map);
+  - a prior review loopback already sent this spec back to implementation (`review_loop_iteration` >= 1 in frontmatter).
+- When in doubt, escalate.
+
+Launch a subagent with no prior conversation context, on the chosen model, with this prompt:
+
+> Read {spec_file} fully and implement it — the spec is the sole source of truth. Load every file listed in its frontmatter `context:` before you start.
+>
+> Before reporting done, run `snap-guard check --diff <baseline_commit from the spec's frontmatter>` and fix every finding. If `snap-guard` is not installed, say "snap-guard: not run" and continue.
+>
+> When done, report what you changed, how you verified it, and anything left incomplete or risky.
+"""
+
+# --- review layers (spec 04): appended after the shipped layers (arrays of tables merge by `id`;
+#     these ids are new, so they append). Both run in parallel with the existing layers. ---
+
+[[workflow.review_layers]]
+id = "slop-reviewer"
+name = "Slop Reviewer"
+instruction = """
+Launch a context-free subagent with this prompt:
+
+Read `{skill-root}/review-prompts/slop-reviewer.md` completely and follow it as your review instructions.
+
+diff_file: the unified diff at `{diff_file}`. Read that file — it is the content under review.
+
+Do not invoke any skill, and do not spawn subagents of your own — you are the reviewer. If the instruction file is unreadable, report that exact failure and stop. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.
+
+"""
+
+[[workflow.review_layers]]
+id = "security-hunter"
+name = "Security Hunter"
+instruction = """
+Launch a context-free subagent with this prompt:
+
+You are a Security Hunter. Review this diff for security vulnerabilities. Check for: authentication and authorization gaps, injection risks (SQL, command, XSS), sensitive data exposure, insecure defaults, OWASP Top 10 patterns, hardcoded secrets or credentials, and missing input validation at system boundaries. Do not assign final severity, priority, or vulnerability-category ranking — triage owns that. Output findings as a Markdown list. Each finding: one-line title, affected file and line if known, and evidence from the diff.
+
+CONTENT: the unified diff at `{diff_file}`. Read that file — it is the content under review.
+
+Do not invoke any skill, and do not spawn subagents of your own — you are the reviewer. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.
+
+"""
+
+# NOTE: the work-packet / slice standard is NOT here — it lives in the forked step files
+# skills/snap-build/workflow.md + step-01-clarify-and-route.md + step-02-plan.md.

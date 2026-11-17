@@ -1,0 +1,8 @@
+# Shared dev environment: API docs on by default. The document and Swagger UI are readable without a
+# token (Swagger UI must load the document before Authorize); every API call made from it needs one,
+# obtained through Authorize (OIDC, authorization code + PKCE).
+springdoc:
+  api-docs:
+    enabled: ${SEED_API_DOCS_ENABLED:true}
+  swagger-ui:
+    enabled: ${SEED_API_DOCS_ENABLED:true}

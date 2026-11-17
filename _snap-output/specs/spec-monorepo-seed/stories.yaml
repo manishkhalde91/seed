@@ -1,0 +1,129 @@
+- id: "1"
+  title: Repository skeleton, local infrastructure and module boundaries
+  description: >-
+    Create the monorepo tree, backend Gradle project (Kotlin DSL) with config/common/security and feature/ root,
+    a minimal Angular 21 workspace, and infrastructure/compose.yaml (CAP-1 infrastructure part, CAP-2).
+    Modulith verify and the ArchUnit rule set run in ./gradlew clean build from the first commit.
+  spec_checkpoint: true
+  done_checkpoint: true
+  invoke_dev_with: >-
+    Target directory: /Users/viral.chonkar/projects/monorepo (run git init if absent; never commit).
+    Package root com.company.seed; layout per backend-architecture.md §1, §3, §4.
+    Repository interfaces live in feature/<m>/domain (decided). No feature module yet: the sample comes in story 8.
+    Boundary-violation fixtures live under src/test and must make the rules fail in a dedicated test, not break the build.
+    Pin versions per stack.md; mark anything unverifiable (springdoc, Modulith detection on 2.1) in the README as "verify".
+    Angular workspace is a minimal scaffold only (builds, lints, tests) on Node 24; the shell is story 11.
+    No storage service: STORAGE_* variables and README first-time setup steps only.
+    File ADR-01..14 from decisions.md into docs/adr, one file each.
+
+- id: "2"
+  title: Migrate the backend build from Maven to Gradle (Kotlin DSL)
+  description: >-
+    Replace pom.xml, mvnw and .mvn/ with a single-project Gradle Kotlin DSL build, version catalog and checksummed wrapper,
+    keeping every story 1 check green under ./gradlew clean build (CAP-2, ADR-15). See stack.md, backend-architecture.md §1
+    and quality-and-delivery.md §1, §5.
+  spec_checkpoint: true
+  done_checkpoint: true
+  invoke_dev_with: >-
+    Delete pom.xml, mvnw, mvnw.cmd and .mvn/ in the same change; never two builds side by side.
+    Move every pinned version from pom.xml into gradle/libs.versions.toml; keep google-java-format 1.36.1 unless 1.37.0
+    works under the Spotless Gradle plugin. Update the README commands, add .gradle/ and build/ to .gitignore, and add
+    docs/adr/0015 from decisions.md ADR-15. Never commit.
+
+- id: "3"
+  title: CI pipeline and quality gates
+  description: >-
+    Path-filtered .github/workflows/ci.yml with backend, frontend and an always-run ci-gate, optional Sonar,
+    Gitleaks, Trivy and SBOM (CAP-17, CAP-18, CI part of CAP-16). See quality-and-delivery.md §4, §9.
+  spec_checkpoint: true
+  done_checkpoint: true
+  invoke_dev_with: >-
+    Sonar steps must report "skipped" in the job summary when SONAR_TOKEN is absent. Pin actions by commit SHA.
+    Branch-protection settings are documented in the README, not applied.
+
+- id: "4"
+  title: Response envelope, exception handling and validation
+  description: >-
+    ApiResponse/ApiErrorResponse and the ApiResponses factory, the SeedException hierarchy and GlobalExceptionHandler,
+    and Bean Validation infrastructure (CAP-3, CAP-4, CAP-5 backend). See api-standards.md §2-§5 and errors-and-logging.md §1-§3.
+  spec_checkpoint: true
+  done_checkpoint: true
+  invoke_dev_with: >-
+    Confirm the envelope open question with the user before coding; default is the current ApiResponse shape.
+
+- id: "5"
+  title: Correlation ID, structured logging, OpenAPI export and health
+  description: >-
+    CorrelationIdFilter ahead of security, ECS JSON logs with masking, committed backend/openapi/api.yaml with a drift check,
+    and Actuator liveness/readiness/metrics (CAP-9, CAP-15, CAP-19). See errors-and-logging.md §4 and quality-and-delivery.md §10.
+  spec_checkpoint: true
+  done_checkpoint: true
+
+- id: "6"
+  title: Persistence foundation — Flyway, auditing, soft delete, IDs, idempotency
+  description: >-
+    Flyway layout and migrate profile, DB roles, auditing base classes and AuditorAware, UUIDv7 IdGenerator, UTC Clock,
+    soft-delete support and idempotency records (CAP-6, CAP-7). See data-and-migrations.md.
+  spec_checkpoint: true
+  done_checkpoint: true
+
+- id: "7"
+  title: Security — OIDC resource server, RBAC and CORS
+  description: >-
+    JWT resource server against any OIDC issuer, role mapping with ADMIN implying USER, @PreAuthorize enforcement,
+    deny-by-default route test, CORS and request limits (CAP-8). See security.md.
+  spec_checkpoint: true
+  done_checkpoint: true
+
+- id: "8"
+  title: Sample feature backend
+  description: >-
+    feature/sample with create, read, update, soft delete, restore and paging through the Repository Pattern
+    (CAP-20 backend part). See api-standards.md §10 and backend-architecture.md §4.5, §5.
+  spec_checkpoint: true
+  done_checkpoint: true
+  invoke_dev_with: >-
+    Mark every sample file as DEMO ONLY. Restore is ADMIN-only (spec default).
+
+- id: "9"
+  title: Live operation status over WebSocket
+  description: >-
+    common.operations with versioned status, pg_notify fan-out via PgStatusListener, STOMP config and subscription auth,
+    and the sample export starting an operation (CAP-10). See realtime-and-storage.md §1.
+  spec_checkpoint: true
+  done_checkpoint: true
+
+- id: "10"
+  title: Object storage and sample export download
+  description: >-
+    ArtifactStorage port with S3 and in-memory adapters, artifact metadata and write sequence, presigned download URL,
+    and the scheduled cleanup jobs; the sample export produces a downloadable file (CAP-11). See realtime-and-storage.md §2, §3.
+    Also adds the local S3-compatible storage service and bucket init to infrastructure/compose.yaml (MinIO replacement, choice open).
+  spec_checkpoint: true
+  done_checkpoint: true
+
+- id: "11"
+  title: Angular shell, authentication, interceptors and design tokens
+  description: >-
+    Runtime config loader, OIDC sign-in with in-memory tokens, guards, interceptors, generated API client, layout,
+    Material M3 theme from SCSS tokens, StateView and realtime services (CAP-12, CAP-14). See frontend-architecture.md §1-§11.
+  spec_checkpoint: true
+  done_checkpoint: true
+
+- id: "12"
+  title: Reactive forms kit and sample UI
+  description: >-
+    Shared validators, messages, server-error mapping, FormSubmitter and edit mode, plus the sample list, form and export
+    screens (CAP-13, CAP-5 frontend, CAP-20 frontend part). See frontend-architecture.md §12.
+  spec_checkpoint: true
+  done_checkpoint: true
+
+- id: "13"
+  title: Clean-checkout verification and sample removal
+  description: >-
+    Run the README from a clean clone to demonstrate the success signal, then delete the sample feature and confirm CI stays green
+    (CAP-1 end to end, CAP-20 removal). See SPEC.md Success signal and quality-and-delivery.md §12.
+  spec_checkpoint: true
+  done_checkpoint: true
+  invoke_dev_with: >-
+    Sample removal is verified on a throwaway branch and documented as a script or guide; the sample stays in the seed.

@@ -1,0 +1,27 @@
+# Snap Guardrails — project settings (example).
+#
+# Copy to _snap/_config/guardrails.yaml to use it. Only a person changes this file: the agent
+# hooks block edits to it.
+#
+# Every override needs a written reason. snap-guard prints the active entries on every run.
+# Locked rules (SLOP-TEST-07, SLOP-DEP-09, SLOP-SEC-12) cannot be overridden: that is a
+# configuration error.
+
+# What the git pre-commit hook does for everyone on this project: off | warn | block.
+# Leave it out to keep the default (block: real findings stop the commit). A developer
+# can still choose for themselves with `git config snap.guard <mode>`.
+# pre_commit: block
+
+overrides:
+  # Change a threshold:
+  # SLOP-DUP-01: { thresholds: { min_tokens: 120 }, reason: "Generated API clients duplicate by design" }
+
+  # Lower a rule to a warning, or switch it off:
+  # SLOP-CMT-11: { mode: off, reason: "Docs-heavy SDK; long comments are the product" }
+
+  # Opt in to mutation testing (off by default; the project's mutation tool must be set up):
+  # SLOP-TEST-08: { mode: warn, reason: "Stryker is set up for this repo" }
+
+# SLOP-DEP-09 false alarms, each checked and marked by a person:
+allow_packages:
+  # - { name: expres, ecosystem: npm, reason: "Internal fork of express, reviewed by A. Person" }

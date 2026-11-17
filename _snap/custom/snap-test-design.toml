@@ -1,0 +1,26 @@
+# Team customization for snap-test-design -- committed.
+#
+# The full instructions live in the guideline file referenced by persistent_facts below
+# (shipped as _snap/guidelines/context-lake-read.md, installed to docs/guidelines/).
+#
+# Purpose: for a spec-story run (input is a spec under {project-root}/_snap-output/specs/<slug>/),
+# resolve the snapct context lake ({project-root}/_snap-output/context/) through its links,
+# load every relevant doc, and make the epic-level plan cover system integration tests with
+# full traceability. Every other run (system-level, sprint epics, non-spec input) behaves as
+# the default skill, except the secrets rule, which applies to all runs.
+# Project-agnostic: everything project-specific is read from the lake at run time.
+#
+# Merge rules (SNAP): scalars override the default; arrays append to the default array.
+
+[workflow]
+
+persistent_facts = [
+  "file:{project-root}/docs/guidelines/context-lake-read.md",
+  "file:{project-root}/docs/guidelines/test-design-coverage-and-levels-rules.md",
+]
+
+activation_steps_append = [
+  "If this invocation names a spec folder under {project-root}/_snap-output/specs/, or any file inside one, note that path as the spec input for step 1. Do not load files, ask questions, or halt now; the mode menu comes first.",
+]
+
+on_complete = '''Run this only for a spec-story run: in create mode, or in validate or edit mode when the target plan's run_key starts with epic-spec- and its progress checkpoint has '## Context Manifest' (read the spec path and the manifest from that checkpoint, not from memory). Otherwise do nothing. Repeat the traceability and SIT check from the persistent facts against the final plan and report every gap to the user as a list. In create or validate mode, offer to fix the gaps with [E] Edit; in edit mode, report them without offering [E] again. If the plan changed after step 6 wrote the test-step CSV, offer to regenerate the CSV.'''

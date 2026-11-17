@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.company.seed.feature.sample.application.SampleRecordCsvTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-17T11:35:18.491Z" hostname="IDXPUNMAC054L.local" time="0.001">
+  <properties/>
+  <testcase name="theFileHasAHeaderAndOneCrlfTerminatedRowPerRecord()" classname="com.company.seed.feature.sample.application.SampleRecordCsvTest" time="0.001"/>
+  <testcase name="aTextASpreadsheetWouldReadAsAFormulaGetsALeadingApostrophe()" classname="com.company.seed.feature.sample.application.SampleRecordCsvTest" time="0.0"/>
+  <testcase name="fieldsWithCommasQuotesOrLineBreaksAreQuotedAndQuotesDoubled()" classname="com.company.seed.feature.sample.application.SampleRecordCsvTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - aRestoredRecordCanBeDeletedAgain()</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<div class="breadcrumbs">
+<a class="breadcrumb" href="../index.html">all</a> &gt; 
+<a class="breadcrumb" href="index.html">com.company.seed.feature.sample.SampleRecordApiIT</a> &gt; 
+<span class="breadcrumb">aRestoredRecordCanBeDeletedAgain()</span>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="successGroup" href="#">Gradle Test Run :integrationTest</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Gradle Test Run :integrationTest</h2>
+<h1>aRestoredRecordCanBeDeletedAgain()</h1>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="" href="#">summary</a>
+</li>
+<li>
+<a class="" href="#">standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>summary</h2>
+<div>
+<div class="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>skipped</p>
+</div>
+</td>
+<td>
+<div class="infoBox duration">
+<div class="counter">0.025s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="tab">
+<h2>standard output</h2>
+<span class="code">
+<div class="clipboard-copy-btn-container">
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="root-0-test-stdout-aRestoredRecordCanBeDeletedAgain()">Copy</button>
+</div>
+<pre id="root-0-test-stdout-aRestoredRecordCanBeDeletedAgain()">{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:03.658741Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-43-exec-3&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /api/v1/sample-records -&gt; 201 in 2 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e8c0-9e60-7699-92fc-5c8911ee0cf2&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;/api/v1/sample-records&quot;,&quot;response&quot;:{&quot;status_code&quot;:201}},&quot;event&quot;:{&quot;duration&quot;:2672667},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:03.662982Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-43-exec-4&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;DELETE /api/v1/sample-records/{id} -&gt; 200 in 2 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-admin&quot;},&quot;correlationId&quot;:&quot;01a1e8c0-9e60-769b-aae3-adb3349b12d6&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;DELETE&quot;},&quot;route&quot;:&quot;/api/v1/sample-records/{id}&quot;,&quot;response&quot;:{&quot;status_code&quot;:200}},&quot;event&quot;:{&quot;duration&quot;:2851250},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:03.670737Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-43-exec-5&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /api/v1/sample-records/{id}/restore -&gt; 200 in 6 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-admin&quot;},&quot;correlationId&quot;:&quot;01a1e8c0-9e60-769c-b257-b94f1b3afafc&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;/api/v1/sample-records/{id}/restore&quot;,&quot;response&quot;:{&quot;status_code&quot;:200}},&quot;event&quot;:{&quot;duration&quot;:6678000},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:03.675073Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-43-exec-6&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;DELETE /api/v1/sample-records/{id} -&gt; 200 in 3 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-admin&quot;},&quot;correlationId&quot;:&quot;01a1e8c0-9e60-769d-802e-bf812657081a&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;DELETE&quot;},&quot;route&quot;:&quot;/api/v1/sample-records/{id}&quot;,&quot;response&quot;:{&quot;status_code&quot;:200}},&quot;event&quot;:{&quot;duration&quot;:3297709},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:03.677992Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-43-exec-7&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /api/v1/sample-records/{id} -&gt; 404 in 1 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e8c0-9e60-769e-a077-a08864b73e1d&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/api/v1/sample-records/{id}&quot;,&quot;response&quot;:{&quot;status_code&quot;:404}},&quot;event&quot;:{&quot;duration&quot;:1962125},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+</pre>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.8.2</a> at 17-Nov-2026, 5:06:08 pm</p>
+</div>
+</div>
+</body>
+</html>

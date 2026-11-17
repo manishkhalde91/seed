@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.company.seed.common.error.web.FieldErrorMapperTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-17T11:35:16.557Z" hostname="IDXPUNMAC054L.local" time="0.016">
+  <properties/>
+  <testcase name="setElementPathHasEmptyBrackets()" classname="com.company.seed.common.error.web.FieldErrorMapperTest" time="0.015"/>
+  <testcase name="truncationNeverSplitsASurrogatePair()" classname="com.company.seed.common.error.web.FieldErrorMapperTest" time="0.0"/>
+  <testcase name="truncationKeepsShortValuesAndCutsLongOnesAt100()" classname="com.company.seed.common.error.web.FieldErrorMapperTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

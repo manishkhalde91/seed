@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - anUnexpectedFailureIsAnInternalErrorLoggedOnceWithTheSessionsCorrelationId(CapturedOutput)</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<div class="breadcrumbs">
+<a class="breadcrumb" href="../index.html">all</a> &gt; 
+<a class="breadcrumb" href="index.html">com.company.seed.common.operations.OperationStatusSnapshotFailureIT</a> &gt; 
+<span class="breadcrumb">anUnexpectedFailureIsAnInternalErrorLoggedOnceWithTheSessionsCorrelationId(CapturedOutput)</span>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="successGroup" href="#">Gradle Test Run :integrationTest</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Gradle Test Run :integrationTest</h2>
+<h1>anUnexpectedFailureIsAnInternalErrorLoggedOnceWithTheSessionsCorrelationId(CapturedOutput)</h1>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="" href="#">summary</a>
+</li>
+<li>
+<a class="" href="#">standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>summary</h2>
+<div>
+<div class="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>skipped</p>
+</div>
+</td>
+<td>
+<div class="infoBox duration">
+<div class="counter">0.066s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="tab">
+<h2>standard output</h2>
+<span class="code">
+<div class="clipboard-copy-btn-container">
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="root-0-test-stdout-anUnexpectedFailureIsAnInternalErrorLoggedOnceWithTheSessionsCorrelationId(CapturedOutput)">Copy</button>
+</div>
+<pre id="root-0-test-stdout-anUnexpectedFailureIsAnInternalErrorLoggedOnceWithTheSessionsCorrelationId(CapturedOutput)">{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:37.711296Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.apache.catalina.core.ContainerBase.[Tomcat-7].[localhost].[/]&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-21-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Initializing Spring DispatcherServlet 'dispatcherServlet'&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:37.711549Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.springframework.web.servlet.DispatcherServlet&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-21-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Initializing Servlet 'dispatcherServlet'&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:37.712511Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.springframework.web.servlet.DispatcherServlet&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-21-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Completed initialization in 1 ms&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:37.715190Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-21-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /ws -&gt; 101 in 2 ms&quot;,&quot;correlationId&quot;:&quot;01a1e94a-85f0-77e9-a8c7-46b51984ab1d&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/ws&quot;,&quot;response&quot;:{&quot;status_code&quot;:101}},&quot;event&quot;:{&quot;duration&quot;:2295208},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:37.745831Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-21-exec-2&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP session 9995e7fd-b62c-492c-994f-4cc1914de7f0 connected&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;snapshot-a87d844c-df78-4618-a3b2-d20a5a0f62f3&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:37.756121Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;ERROR&quot;,&quot;logger&quot;:&quot;com.company.seed.common.operations.api.OperationStatusSubscriptionController&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;clientInboundChannel-4&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;The operation snapshot failed; the session gets ERROR internal-error&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;operationId&quot;:&quot;01a1e94a-85e9-76ad-9540-8ba9587e0a7b&quot;,&quot;correlationId&quot;:&quot;snapshot-a87d844c-df78-4618-a3b2-d20a5a0f62f3&quot;,&quot;error&quot;:{&quot;type&quot;:&quot;java.lang.IllegalStateException&quot;,&quot;message&quot;:&quot;stubbed snapshot failure&quot;,&quot;stack_trace&quot;:&quot;java.lang.IllegalStateException: stubbed snapshot failure\n\tat com.company.seed.common.operations.application.OperationService.getForCurrentActor(OperationService.java:136)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158)\n\tat org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133)\n\tat org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371)\n\tat org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:714)\n\tat com.company.seed.common.operations.application.OperationService$$SpringCGLIB$$0.getForCurrentActor(&lt;generated&gt;)\n\tat com.company.seed.common.operations.api.OperationStatusSubscriptionController.snapshot(OperationStatusSubscriptionController.java:48)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158)\n\tat org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.proceed(AuthorizationManagerBeforeMethodInterceptor.java:271)\n\tat org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.attemptAuthorization(AuthorizationManagerBeforeMethodInterceptor.java:266)\n\tat org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.invoke(AuthorizationManagerBeforeMethodInterceptor.java:197)\n\tat org.springframework.security.config.annotation.method.configuration.DeferringMethodInterceptor.invoke(DeferringMethodInterceptor.java:44)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:714)\n\tat com.company.seed.common.operations.api.OperationStatusSubscriptionController$$SpringCGLIB$$0.snapshot(&lt;generated&gt;)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:168)\n\tat org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:119)\n\tat org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMatch(AbstractMethodMessageHandler.java:560)\n\tat org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:546)\n\tat org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler.handleMatch(SimpAnnotationMethodMessageHandler.java:95)\n\tat org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessageInternal(AbstractMethodMessageHandler.java:514)\n\tat org.springframework.messaging.handler.invocation.AbstractMethodMessageHandler.handleMessage(AbstractMethodMessageHandler.java:451)\n\tat org.springframework.messaging.support.ExecutorSubscribableChannel$SendTask.run(ExecutorSubscribableChannel.java:151)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n&quot;},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+</pre>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.8.2</a> at 17-Nov-2026, 5:06:08 pm</p>
+</div>
+</div>
+</body>
+</html>

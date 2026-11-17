@@ -1,0 +1,16 @@
+# Team-level customization for snap-test-automate.
+# Merged on top of .claude/skills/snap-test-automate/customize.toml per snap structural
+# rules:
+#   scalars: override wins
+#   arrays (persistent_facts, activation_steps_*): append
+
+[workflow]
+
+# One manual test case (TC) with ordered steps -> exactly one test() function.
+# The rule text lives in the guideline file below (shipped as _snap/guidelines/TA-one-tc-one-test.md,
+# installed to docs/guidelines/), so it survives skill updates. persistent_facts load into the
+# orchestrating agent only; the guideline's "PASSING THIS RULE TO SUBAGENTS" section tells it to pass
+# the rule text to each generation subagent.
+persistent_facts = [
+  "file:{project-root}/docs/guidelines/TA-one-tc-one-test.md",
+]

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - aRoleLessTokenIsForbiddenWhereTheHandlerNeedsARole()</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<div class="breadcrumbs">
+<a class="breadcrumb" href="../index.html">all</a> &gt; 
+<a class="breadcrumb" href="index.html">com.company.seed.security.RouteTableIT</a> &gt; 
+<span class="breadcrumb">aRoleLessTokenIsForbiddenWhereTheHandlerNeedsARole()</span>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="successGroup" href="#">Gradle Test Run :integrationTest</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Gradle Test Run :integrationTest</h2>
+<h1>aRoleLessTokenIsForbiddenWhereTheHandlerNeedsARole()</h1>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="" href="#">summary</a>
+</li>
+<li>
+<a class="" href="#">standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>summary</h2>
+<div>
+<div class="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>skipped</p>
+</div>
+</td>
+<td>
+<div class="infoBox duration">
+<div class="counter">0.010s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="tab">
+<h2>standard output</h2>
+<span class="code">
+<div class="clipboard-copy-btn-container">
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="root-0-test-stdout-aRoleLessTokenIsForbiddenWhereTheHandlerNeedsARole()">Copy</button>
+</div>
+<pre id="root-0-test-stdout-aRoleLessTokenIsForbiddenWhereTheHandlerNeedsARole()">{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.146390Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;WARN&quot;,&quot;logger&quot;:&quot;com.company.seed.common.error.web.GlobalExceptionHandler&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-3&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;PUT /api/v1/sample-records/00000000-0000-7000-8000-000000000001 -&gt; 403 FORBIDDEN subject=test-user (org.springframework.security.access.AccessDeniedException) [correlationId=01a1e94a-f119-7514-887f-4e941933de85]&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f119-7514-887f-4e941933de85&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.146558Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-3&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;PUT /api/v1/sample-records/{id} -&gt; 403 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f119-7514-887f-4e941933de85&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;PUT&quot;},&quot;route&quot;:&quot;/api/v1/sample-records/{id}&quot;,&quot;response&quot;:{&quot;status_code&quot;:403}},&quot;event&quot;:{&quot;duration&quot;:600208},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.147296Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;WARN&quot;,&quot;logger&quot;:&quot;com.company.seed.common.error.web.GlobalExceptionHandler&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-8&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /api/v1/sample-records/00000000-0000-7000-8000-000000000001/restore -&gt; 403 FORBIDDEN subject=test-user (org.springframework.security.access.AccessDeniedException) [correlationId=01a1e94a-f11a-70e3-8750-0c27ea1a3653]&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11a-70e3-8750-0c27ea1a3653&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.147462Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-8&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /api/v1/sample-records/{id}/restore -&gt; 403 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11a-70e3-8750-0c27ea1a3653&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;/api/v1/sample-records/{id}/restore&quot;,&quot;response&quot;:{&quot;status_code&quot;:403}},&quot;event&quot;:{&quot;duration&quot;:499750},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.148103Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;WARN&quot;,&quot;logger&quot;:&quot;com.company.seed.common.error.web.GlobalExceptionHandler&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-9&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /api/v1/sample-records/export -&gt; 403 FORBIDDEN subject=test-user (org.springframework.security.access.AccessDeniedException) [correlationId=01a1e94a-f11b-7154-ae36-f14aa1e27653]&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11b-7154-ae36-f14aa1e27653&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.148212Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-9&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /api/v1/sample-records/export -&gt; 403 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11b-7154-ae36-f14aa1e27653&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;/api/v1/sample-records/export&quot;,&quot;response&quot;:{&quot;status_code&quot;:403}},&quot;event&quot;:{&quot;duration&quot;:354167},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.148835Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;WARN&quot;,&quot;logger&quot;:&quot;com.company.seed.common.error.web.GlobalExceptionHandler&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-4&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /api/v1/sample-records -&gt; 403 FORBIDDEN subject=test-user (org.springframework.security.access.AccessDeniedException) [correlationId=01a1e94a-f11c-7569-ad49-6bb50bdf2369]&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11c-7569-ad49-6bb50bdf2369&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.148936Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-4&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /api/v1/sample-records -&gt; 403 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11c-7569-ad49-6bb50bdf2369&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;/api/v1/sample-records&quot;,&quot;response&quot;:{&quot;status_code&quot;:403}},&quot;event&quot;:{&quot;duration&quot;:355125},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.149527Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /api/v1/me -&gt; 200 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11d-71f2-b3e1-acc288288351&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/api/v1/me&quot;,&quot;response&quot;:{&quot;status_code&quot;:200}},&quot;event&quot;:{&quot;duration&quot;:321083},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.150017Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;WARN&quot;,&quot;logger&quot;:&quot;com.company.seed.common.error.web.GlobalExceptionHandler&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-5&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /api/v1/sample-records -&gt; 403 FORBIDDEN subject=test-user (org.springframework.security.access.AccessDeniedException) [correlationId=01a1e94a-f11d-71f3-9b47-55b1a65853c4]&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11d-71f3-9b47-55b1a65853c4&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.150108Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-5&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /api/v1/sample-records -&gt; 403 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11d-71f3-9b47-55b1a65853c4&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/api/v1/sample-records&quot;,&quot;response&quot;:{&quot;status_code&quot;:403}},&quot;event&quot;:{&quot;duration&quot;:297375},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.150619Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;WARN&quot;,&quot;logger&quot;:&quot;com.company.seed.common.error.web.GlobalExceptionHandler&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-2&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /api/v1/operations/00000000-0000-7000-8000-000000000001 -&gt; 403 FORBIDDEN subject=test-user (org.springframework.security.access.AccessDeniedException) [correlationId=01a1e94a-f11e-70be-9b1b-11e4b54e4909]&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11e-70be-9b1b-11e4b54e4909&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.150708Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-2&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /api/v1/operations/{id} -&gt; 403 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11e-70be-9b1b-11e4b54e4909&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/api/v1/operations/{id}&quot;,&quot;response&quot;:{&quot;status_code&quot;:403}},&quot;event&quot;:{&quot;duration&quot;:283542},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.151238Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-6&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /error -&gt; 404 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11f-7561-b37a-5142141a7b1f&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/error&quot;,&quot;response&quot;:{&quot;status_code&quot;:404}},&quot;event&quot;:{&quot;duration&quot;:227917},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.151830Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-7&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;POST /error -&gt; 404 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f11f-7562-a982-c1b3a1d15094&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;POST&quot;},&quot;route&quot;:&quot;/error&quot;,&quot;response&quot;:{&quot;status_code&quot;:404}},&quot;event&quot;:{&quot;duration&quot;:239958},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.152379Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;WARN&quot;,&quot;logger&quot;:&quot;com.company.seed.common.error.web.GlobalExceptionHandler&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-10&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;DELETE /api/v1/sample-records/00000000-0000-7000-8000-000000000001 -&gt; 403 FORBIDDEN subject=test-user (org.springframework.security.access.AccessDeniedException) [correlationId=01a1e94a-f120-779b-9ecb-27aad45af5a9]&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f120-779b-9ecb-27aad45af5a9&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.152484Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-10&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;DELETE /api/v1/sample-records/{id} -&gt; 403 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f120-779b-9ecb-27aad45af5a9&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;DELETE&quot;},&quot;route&quot;:&quot;/api/v1/sample-records/{id}&quot;,&quot;response&quot;:{&quot;status_code&quot;:403}},&quot;event&quot;:{&quot;duration&quot;:307250},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.153030Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;WARN&quot;,&quot;logger&quot;:&quot;com.company.seed.common.error.web.GlobalExceptionHandler&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-3&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /api/v1/sample-records/00000000-0000-7000-8000-000000000001 -&gt; 403 FORBIDDEN subject=test-user (org.springframework.security.access.AccessDeniedException) [correlationId=01a1e94a-f120-779c-b746-b12e0e3c252f]&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f120-779c-b746-b12e0e3c252f&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:36:05.153357Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-25-exec-3&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /api/v1/sample-records/{id} -&gt; 403 in 0 ms&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-f120-779c-b746-b12e0e3c252f&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/api/v1/sample-records/{id}&quot;,&quot;response&quot;:{&quot;status_code&quot;:403}},&quot;event&quot;:{&quot;duration&quot;:561208},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+</pre>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.8.2</a> at 17-Nov-2026, 5:06:08 pm</p>
+</div>
+</div>
+</body>
+</html>

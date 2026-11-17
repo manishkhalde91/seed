@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - readinessIsDownNamingTheMissingVersion()</title>
+<link href="../../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<div class="breadcrumbs">
+<a class="breadcrumb" href="../../index.html">all</a> &gt; 
+<a class="breadcrumb" href="../index.html">com.company.seed.config.ReadinessIT</a> &gt; 
+<a class="breadcrumb" href="index.html">com.company.seed.config.ReadinessIT$NeverMigrated</a> &gt; 
+<span class="breadcrumb">readinessIsDownNamingTheMissingVersion()</span>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="successGroup" href="#">Gradle Test Run :integrationTest</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Gradle Test Run :integrationTest</h2>
+<h1>readinessIsDownNamingTheMissingVersion()</h1>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="" href="#">summary</a>
+</li>
+<li>
+<a class="" href="#">standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>summary</h2>
+<div>
+<div class="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>skipped</p>
+</div>
+</td>
+<td>
+<div class="infoBox duration">
+<div class="counter">0.017s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="tab">
+<h2>standard output</h2>
+<span class="code">
+<div class="clipboard-copy-btn-container">
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="root-0-test-stdout-readinessIsDownNamingTheMissingVersion()">Copy</button>
+</div>
+<pre id="root-0-test-stdout-readinessIsDownNamingTheMissingVersion()">{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:57.402881Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;ERROR&quot;,&quot;logger&quot;:&quot;org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;scheduling-2&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Unexpected error occurred in scheduled task&quot;,&quot;error&quot;:{&quot;type&quot;:&quot;org.springframework.jdbc.BadSqlGrammarException&quot;,&quot;message&quot;:&quot;StatementCallback; bad SQL grammar [SELECT ID, COMPLETION_DATE, EVENT_TYPE, LISTENER_ID, PUBLICATION_DATE, SERIALIZED_EVENT, STATUS, COMPLETION_ATTEMPTS, LAST_RESUBMISSION_DATE FROM common.EVENT_PUBLICATION\n WHERE STATUS = 'PUBLISHED'\n]&quot;,&quot;stack_trace&quot;:&quot;org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [SELECT ID, COMPLETION_DATE, EVENT_TYPE, LISTENER_ID, PUBLICATION_DATE, SERIALIZED_EVENT, STATUS, COMPLETION_ATTEMPTS, LAST_RESUBMISSION_DATE FROM common.EVENT_PUBLICATION\n WHERE STATUS = 'PUBLISHED'\n]\n\tat org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:134)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:102)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:111)\n\tat org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1549)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:427)\n\tat org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:491)\n\tat org.springframework.modulith.events.jdbc.JdbcEventPublicationRepositoryV2.findByStatus(JdbcEventPublicationRepositoryV2.java:492)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158)\n\tat org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133)\n\tat org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371)\n\tat org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)\n\tat org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:219)\n\tat jdk.proxy3/jdk.proxy3.$Proxy262.findByStatus(Unknown Source)\n\tat org.springframework.modulith.events.core.DefaultEventPublicationRegistry.markFailed(DefaultEventPublicationRegistry.java:367)\n\tat org.springframework.modulith.events.core.DefaultEventPublicationRegistry.markStalePublicationsFailed(DefaultEventPublicationRegistry.java:256)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:710)\n\tat org.springframework.modulith.events.core.DefaultEventPublicationRegistry$$SpringCGLIB$$0.markStalePublicationsFailed(&lt;generated&gt;)\n\tat org.springframework.modulith.events.config.StalenessMonitorConfiguration.lambda$configureTasks$0(StalenessMonitorConfiguration.java:69)\n\tat org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88)\n\tat org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88)\n\tat org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)\n\tat com.company.seed.config.AsyncConfig.lambda$propagating$0(AsyncConfig.java:45)\n\tat org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler$DelegatingRunnableScheduledFuture.run(ThreadPoolTaskScheduler.java:453)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\nCaused by: org.postgresql.util.PSQLException: ERROR: relation \&quot;common.event_publication\&quot; does not exist\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2993)\n\tat org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2656)\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:446)\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:533)\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:449)\n\tat org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:371)\n\tat org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:356)\n\tat org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:332)\n\tat org.postgresql.jdbc.PgStatement.executeQuery(PgStatement.java:282)\n\tat com.zaxxer.hikari.pool.ProxyStatement.executeQuery(ProxyStatement.java:111)\n\tat com.zaxxer.hikari.pool.HikariProxyStatement.executeQuery(HikariProxyStatement.java)\n\tat org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:478)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:412)\n\t... 32 common frames omitted\n&quot;},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:57.403863Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.apache.catalina.core.ContainerBase.[Tomcat-10].[localhost].[/]&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-38-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Initializing Spring DispatcherServlet 'dispatcherServletRegistration'&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:57.403897Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.springframework.web.servlet.DispatcherServlet&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-38-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Initializing Servlet 'dispatcherServletRegistration'&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:57.403974Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.springframework.web.servlet.DispatcherServlet&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-38-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Completed initialization in 0 ms&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:57.405703Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.FlywayExecutor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-38-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Database: jdbc:postgresql://localhost:63107/readiness_untouched?options=-c%20statement_timeout=15s&amp;sslmode=prefer&amp;logServerErrorDetail=false (PostgreSQL 16.16)&quot;,&quot;correlationId&quot;:&quot;01a1e94a-d2dc-7321-842f-7bdd6a78182a&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:57.411122Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-38-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;Schema history table \&quot;common\&quot;.\&quot;flyway_schema_history\&quot; does not exist yet&quot;,&quot;correlationId&quot;:&quot;01a1e94a-d2dc-7321-842f-7bdd6a78182a&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+</pre>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.8.2</a> at 17-Nov-2026, 5:06:08 pm</p>
+</div>
+</div>
+</body>
+</html>

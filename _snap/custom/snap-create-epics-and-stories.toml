@@ -1,0 +1,36 @@
+# Snap default customization -- team-editable. Managed alongside snap-customize skill.
+#
+# Existing 5 facts kept. The authoring standards previously carried by the forked
+# step-03-create-stories.md fork are folded in here (they are additive standards, no
+# control-flow change), so the fork can be deleted.
+#
+# Merge rules (SNAP): arrays append to the default array.
+
+[workflow]
+
+# --- SnapCT context lake as the PRD input set ---
+activation_steps_prepend = [
+  """
+Context lake requirements. Run:
+  uv run {project-root}/_snap/scripts/resolve_artifacts.py --project-root {project-root} --profile requirements
+Read the JSON. When `files` is non-empty, that list IS the PRD input set for step-01: the lake's overview files plus every feature page. Do not search `{planning_artifacts}` for a PRD, and put each returned file in the `inputDocuments:` frontmatter of `epics.md`.
+  - Requirements in feature pages are `#### FR-N:` headings (section 4 of each page). Extract every one, once, in ID order across all pages. Keep the lake's IDs exactly as written (`FR-12`, never renumbered to FR1, FR2); the FR Coverage Map and every story refer to those same IDs.
+  - A page's `Rules:` line names the BR-/VAL- rules an FR depends on; carry them into the story's acceptance criteria as behaviour, in business language, per the story-writing standards.
+  - NFRs come from `prd/nfr.md` under their own IDs. Do not merge or renumber them.
+  - If `files` is empty (no lake), fall back to the PRD search in step-01 as usual.
+""",
+]
+
+persistent_facts = [
+  # --- existing Snap facts ---
+  "`epics.md` is append-only: if {planning_artifacts}/epics.md already exists, skip re-initialisation from the template and append/update in place — never overwrite it.",
+  "All stories must be user-value focused — title, user story, acceptance criteria, and notes describe WHAT the system does and WHY it matters to the user, never HOW it is built. No implementation leakage: no variable/column/schema/field names, endpoints, status codes, tech/framework/library names, algorithms, data structures, API/DB design, or architecture patterns. When a story needs to reference a data concept, use only a plain business-entity name (e.g. 'User Profile', 'Order') that a non-technical person would recognize — never a schema or technical term. Exemption: this rule does not apply to scaffold, starter-template, or infrastructure-setup stories (e.g. the scaffold/mock/integration split, or Epic 1 Story 1 starter-template setup). Those exist specifically to do technical setup work and may name UI, routing, data models, and component wiring directly.",
+  "Every story's acceptance criteria must be thorough, not minimal: multiple happy-path scenarios covering the different ways the feature is normally used (not just one), plus error/negative and edge cases. Favor more specific ACs over fewer broad ones — thin AC coverage is a defect.",
+  "Extract Additional Requirements from Architecture in business/functional language, not technical implementation detail — no specific technologies, infra steps, or integration mechanics; state what connects to what and why, not how.",
+  "Give every story an optional 'Notes' field for genuine assumptions, risks, dependencies, or out-of-scope items — omit if nothing meaningful.",
+
+  # --- folded in from the step-03 fork ---
+  "Size every story for completion in a single dev session (~2-4 hours). Favour more, smaller stories over fewer, larger ones.",
+  "Maximum granularity: one capability per story, the smallest completable unit. Stories MUST NOT depend on future stories within the same epic.",
+  "SCAFFOLD / MOCKED INTEGRATION / INTEGRATION SPLIT PRINCIPLE: when a story is the FIRST to touch an external system, API, service, database write path, or new async boundary, split it into three stories — (1) Scaffold: UI, routes, data models, component wiring, no real backend calls; (2) Mocked integration: wire the real interface contract with a stubbed response to validate shape and flow; (3) Integration: replace the mock with the real call, handle errors and edge cases. Once an integration story is complete for a given system, subsequent stories using that same system do NOT need the full 3-split — the contract is already proven. Bundling scaffold, mock, and integration work into one story is a defect. Flag any first-touch integration during epic breakdown so the split is applied.",
+]

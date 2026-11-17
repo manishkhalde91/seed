@@ -1,0 +1,31 @@
+# Snap default customization -- team-editable. Managed alongside snap-customize skill.
+#
+# Grounds snap-spec in the SnapCT context lake. The lake is read in place, never copied into
+# SPEC.md: its feature page is listed as an adopted companion, and the spec cites rule IDs.
+#
+# Merge rules (SNAP): scalars override; arrays append.
+
+[workflow]
+
+activation_steps_prepend = [
+  """
+Context lake grounding. When the intent names a feature, or names paths or modules you can map to one, run:
+  uv run {project-root}/_snap/scripts/resolve_artifacts.py --project-root {project-root} --profile feature=<slug>
+or, when you only have paths:
+  uv run {project-root}/_snap/scripts/resolve_artifacts.py --project-root {project-root} --profile feature --paths <touched paths>
+Read the JSON it prints. Keep `feature`, `files`, `rule_ids` and `stale_count` for the run.
+  - Read every file in `files` before drafting. They describe what the product does today; the spec describes what should change.
+  - If `files` is empty (no lake, no owning feature, or a new feature), carry on without grounding. Do not search for a lake yourself.
+  - A resolver warning (legacy lake, other features matched, over budget) is worth one line to the user in interactive mode; never block on it.
+  - If `stale_count` is above 0 and the feature page is in `files`, tell the user that many lake lines are out of date, and treat the page as hypotheses.
+""",
+]
+
+persistent_facts = [
+  "When a context-lake feature page was resolved at activation: list its path (relative to the spec folder, e.g. ../../context/features/refunds.md) and any other file the resolver returned in SPEC.md `companions:` as ADOPTED companions. Never copy their content into SPEC.md or a spec-authored companion, and never edit them. Set the frontmatter `feature:` to the page's slug.",
+  "When a context lake exists, `feature:` is required in SPEC.md frontmatter. For a feature the lake has no page for yet, set it to the slug the feature will have and add a Constraint or Open Question noting that the page is created when the work is built.",
+  "Set `rules_touched:` to the lake rule IDs (BR-, VAL-, ST-) the intent bends or changes, taken from the resolved feature page and `rule_ids`. A Constraint that bends a lake rule must cite its ID. Never invent an ID: if a rule is needed that the page does not carry, say so in Open Questions.",
+
+  # --- Snap commit lines (Snap-Intent, Snap-Agent, Snap-Model): snap-spec stages and waits ---
+  "Snap commit lines (interactive runs only; a headless run skips this, because its caller owns the commit): when a run has written or changed files in the spec folder, finish by (1) staging the whole spec folder with `git -C <repo> add <spec folder>`, where `<repo>` is the git repo that holds the spec folder (in a multi-repo project that is the repo with the Snap folder, not a code repo), and (2) as the very last thing, running `python3 {project-root}/_snap/scripts/snap_trailers.py set --repo <repo> --skill snap-spec --spec <spec folder>`, adding `--model <your model id>` only when you know it. Never invent a value. If the folder is not in a git repository, or nothing changed, skip both. Do not commit. Tell the person once that the spec files are staged and not committed, and that they can run `git -C <repo> commit` (just `git commit` in a single repo) when ready, and the Snap lines will be added to the message. If they stage or change anything else first, the lines are skipped. If the script prints a warning that the commit hook is not installed, pass that one line on to the person. None of this ever blocks the run.",
+]

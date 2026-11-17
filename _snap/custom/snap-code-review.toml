@@ -1,0 +1,111 @@
+# Snap default customization -- team-editable. Managed alongside snap-customize skill.
+#
+# Replaces the four forked step files under snap-code-review/steps/ (step-01..04).
+# SNAP v6.11 made snap-code-review's reviewer roster data-driven via
+# [[workflow.review_layers]], so the extra Snap reviewers are appended here as layers
+# and the Blast Radius Analysis moves to activation_steps_append.
+#
+# Merge rules (SNAP): scalars override; arrays append; arrays-of-tables merge by `id`
+# (matching id replaces, new id appends). The four entries below are NEW ids, so they
+# append after the shipped layers (blind-hunter, edge-case-hunter, verification-gap,
+# acceptance-auditor).
+
+[workflow]
+
+persistent_facts = [
+  "Pass the Blast Radius Summary (produced during activation) into every review layer except the Blind Hunter. In the completion summary, add a line: '**Blast Radius:** {directly_changed_modules} directly changed; {downstream import hit count} downstream import hits (live lookup)'. Omit the line if the diff touched no modules (all changes are shared-utility files).",
+
+  # --- snap-guard layer (spec 04, part 6) ---
+  "Findings from the `snap-guard` layer are deterministic rule hits, not opinions. In triage, a `snap-guard` finding may be patched, or deferred with a written reason; never classify one as false or dismiss it as noise. Present them with their `rule_id`. snap-guard is advisory here: it never stops the review or the build.",
+]
+
+activation_steps_append = [
+  """
+Blast Radius Analysis — run after the diff is gathered, before the review layers.
+
+Tier 1 — live reverse-dependency lookup (always runs, no map required):
+  a. Derive touched modules. For each file path in the diff, take the second path segment under the source root (e.g. src/modules/{name}/... -> module {name}). Files under src/utils/, src/constants/, libs/snap/src/, or similar shared paths are not module-owned -- tag them 'shared utilities' and exclude them. Build {directly_changed_modules} = distinct touched module names.
+  b. Reverse-dependency search. For each module, grep the codebase for that module's directory name in import/require/use statements from outside its own directory, excluding tests. Example: grep -rn "modules/{name}" --include="*.ts" --include="*.tsx" src/ | grep -v "src/modules/{name}/" | grep -v "__tests__\\|\\.test\\.\\|\\.spec\\." — cap ~50 hits/module and note truncation if hit. Derive the distinct downstream file count and downstream module set.
+  c. Build the Blast Radius Summary, one line per changed module:
+       {module} <- imported by {n} files across: {downstream module list} (live lookup)
+     or, if none: {module} <- no external importers found (live lookup)
+
+Tier 2 — static map supplement (optional, freshness-gated). Locate the SnapCT context lake: run `uv run {project-root}/_snap/scripts/resolve_artifacts.py --project-root {project-root} --profile overview` and take `lake` and `source_commits` from the JSON. The map is `<lake>/blast-radius-map.json`; if that file or the lake is missing, Tier 2 adds nothing.
+  - Freshness comes from the lake, not the map: compare the commit recorded for this repo in `source_commits` (the entry named for the repo directory, or the only entry) with repo HEAD. Read only the map's top-level `analysis` field before deciding.
+  - If that commit matches repo HEAD (or the user confirms the lake current): load the map entries for {directly_changed_modules} only, append them to the summary, each labeled with its trust level from `analysis`; add any `test_files.unit` glob as a 'Test files to verify' line.
+  - If it does not match and the user cannot confirm: skip Tier 2 and append 'static blast-radius map present but stale -- used live lookup only'.
+  - If the file does not exist: nothing to add.
+
+Print the Blast Radius Summary at the pre-review checkpoint alongside the diff stats. If no modules were touched, omit it.
+""",
+]
+
+[[workflow.review_layers]]
+id = "security-hunter"
+name = "Security Hunter"
+instruction = """
+Launch a context-free subagent with this prompt:
+
+You are a Security Hunter. Review this diff for security vulnerabilities. Check for: authentication and authorization gaps, injection risks (SQL, command, XSS), sensitive data exposure, insecure defaults, OWASP Top 10 patterns, hardcoded secrets or credentials, and missing input validation at system boundaries. If a Blast Radius Summary is provided, extend your analysis to downstream modules that import from changed modules — a vulnerability in a shared module may affect all its consumers. Do not assign final severity, priority, or vulnerability-category ranking — triage owns that. Output findings as a Markdown list. Each finding: one-line title, affected file and line if known, and evidence from the diff.
+
+Review content: the unified diff at `{diff_file}`. Read that file — it is the content under review.
+
+Do not invoke any skill. Return only the review result.
+"""
+
+[[workflow.review_layers]]
+id = "performance-auditor"
+name = "Performance Auditor"
+instruction = """
+Launch a context-free subagent with this prompt:
+
+You are a Performance Auditor. Review this diff for performance issues. Check for: N+1 query patterns, missing database indexes implied by new query patterns, unnecessary re-renders or recomputations, expensive operations inside loops or hot paths, unguarded recursion, missing pagination on collection endpoints, and synchronous blocking calls where async is available. If a Blast Radius Summary is provided, consider whether downstream modules that consume changed code inherit any performance regressions. Do not assign final severity, priority, or impact level — triage owns that. Output findings as a Markdown list. Each finding: one-line title, performance category, and affected file and line if known.
+
+Review content: the unified diff at `{diff_file}`. Read that file — it is the content under review.
+
+Do not invoke any skill. Return only the review result.
+"""
+
+[[workflow.review_layers]]
+id = "style-auditor"
+name = "Style Auditor"
+instruction = """
+Launch a context-free subagent with this prompt:
+
+You are a Style Auditor. Review this diff for style and convention violations, using the project-context.md loaded as a persistent fact if available. Check for: naming inconsistencies (variables, functions, files) against existing codebase patterns, file/folder structure deviations, import ordering violations, code patterns that contradict project conventions, dead code introduced by this change, and missing or inconsistent error handling patterns. If a Blast Radius Summary is provided, also check for style inconsistencies introduced across directly modified and downstream modules. Output findings as a Markdown list. Each finding: one-line title, convention violated, and file and line reference.
+
+Review content: the unified diff at `{diff_file}`. Read that file — it is the content under review.
+
+Do not invoke any skill. Return only the review result.
+"""
+
+[[workflow.review_layers]]
+id = "coverage-auditor"
+name = "Coverage Auditor"
+instruction = """
+First ask the user: "Would you like to include a Test Coverage audit? (checks whether the diff adds/updates tests proportional to the changes made)" If the user declines, return no findings and stop.
+
+Otherwise launch a context-free subagent with this prompt:
+
+You are a Coverage Auditor. Review this diff for test coverage gaps. Check for: new functions or methods with no corresponding test, changed logic paths not reflected in updated tests, removed tests that are not justified by removed functionality, critical edge cases (null inputs, empty collections, auth boundaries) lacking test assertions, and integration points with no contract or integration test. Output findings as a Markdown list. Each finding: one-line title, the untested path or function, and file and line reference.
+
+Review content: the unified diff at `{diff_file}`. Read that file — it is the content under review.
+
+Do not invoke any skill. Return only the review result.
+"""
+
+[[workflow.review_layers]]
+id = "snap-guard"
+name = "Snap Guard Check"
+instruction = """
+Run this layer yourself; do not launch a subagent. It is a deterministic check, so it costs no review tokens.
+
+1. If `snap-guard` is not installed (`command -v snap-guard` finds nothing), report one line, "snap-guard: not run (not installed)", return no findings and stop. Never treat this as a failure.
+2. Pick the base from how the diff was gathered, so the check covers exactly the same changes as `{diff_file}`:
+   - baseline commit from the spec, branch diff, or commit range: `snap-guard check --diff <that base>` (for a range `A..B` or `A...B`, use `A`);
+   - staged changes only: `snap-guard check --staged`;
+   - uncommitted changes, or a file list: `snap-guard check --diff HEAD`;
+   - a diff that was provided and does not match the working tree: report "snap-guard: not run (no base to compare)" and stop.
+3. Add `--json` and read the result. Exit code 0 means no findings. Exit code 1 means findings. Exit code 2 (settings error), 3 (packages that need a person) or 4 (check could not run): report the message in one line and return any findings it did print.
+4. Return findings as a Markdown list. Each finding: `rule_id`, file and line, the message, and the first line of the reason shown by snap-guard. If nothing is found, return "snap-guard: pass".
+"""

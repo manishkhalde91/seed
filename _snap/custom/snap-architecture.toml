@@ -1,0 +1,16 @@
+# Snap default customization -- team-editable. Managed alongside snap-customize skill.
+#
+# Grounds snap-architecture in the SnapCT context lake overview (PRD index, personas, product journeys,
+# product rules, NFRs), read in place through resolve_artifacts.py.
+#
+# Merge rules (SNAP): scalars override; arrays append.
+
+[workflow]
+
+activation_steps_prepend = [
+  """
+Context lake overview. Run:
+  uv run {project-root}/_snap/scripts/resolve_artifacts.py --project-root {project-root} --profile overview
+Read the JSON. When `files` is non-empty, read them as grounding for this run: what the product does today, who uses it, and the rules every feature obeys. They are existing behaviour, not the plan; planning artifacts say what changes. When `stale_count` is above 0, treat the lake as possibly out of date for the lines the work touches and say so once. When `files` is empty (no lake), carry on without it.
+""",
+]

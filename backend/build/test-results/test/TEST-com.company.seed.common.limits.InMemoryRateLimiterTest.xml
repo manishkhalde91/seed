@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.company.seed.common.limits.InMemoryRateLimiterTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-11-17T11:35:17.208Z" hostname="IDXPUNMAC054L.local" time="0.005">
+  <properties/>
+  <testcase name="theLargestBudgetDoesNotOverflow()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.002"/>
+  <testcase name="5/min, next write &quot;0&quot; ms after the 5th -&gt; wait &quot;12000&quot; ms, Retry-After &quot;12&quot;" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.001"/>
+  <testcase name="5/min, next write &quot;500&quot; ms after the 5th -&gt; wait &quot;11500&quot; ms, Retry-After &quot;12&quot;" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="5/min, next write &quot;1000&quot; ms after the 5th -&gt; wait &quot;11000&quot; ms, Retry-After &quot;11&quot;" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="5/min, next write &quot;1001&quot; ms after the 5th -&gt; wait &quot;10999&quot; ms, Retry-After &quot;11&quot;" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="5/min, next write &quot;11999&quot; ms after the 5th -&gt; wait &quot;1&quot; ms, Retry-After &quot;1&quot;" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="aWaitOfAFractionOfASecondIsRetryAfterOne()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.001"/>
+  <testcase name="callersHaveSeparateBudgets()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="tokensRefillContinuously()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="aBucketIdleForMoreThanAMinuteIsEvictedAndStartsFullAgain()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="aRefusedRequestTakesNoToken()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="theBudgetNeverExceedsTheCapacity()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="aClockThatGoesBackAddsNothing()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="aNewCallerHasTheFullBudgetAtOnce()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="anUnevenRateStillRefillsTheWholeBudgetInAMinute()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.001"/>
+  <testcase name="aRefusedRequestKeepsItsBucketAlive()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <testcase name="aBucketIdleForExactlyOneMinuteIsKept()" classname="com.company.seed.common.limits.InMemoryRateLimiterTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

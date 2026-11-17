@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.company.seed.architecture.ModularityTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-17T11:35:16.061Z" hostname="IDXPUNMAC054L.local" time="0.428">
+  <properties/>
+  <testcase name="commonIsOpenAndShared()" classname="com.company.seed.architecture.ModularityTest" time="0.001"/>
+  <testcase name="verifiesModuleBoundaries()" classname="com.company.seed.architecture.ModularityTest" time="0.026"/>
+  <testcase name="detectsExactlyTheTopLevelModulesPlusFeatureModules()" classname="com.company.seed.architecture.ModularityTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

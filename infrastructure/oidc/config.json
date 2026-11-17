@@ -1,0 +1,37 @@
+{
+  "interactiveLogin": true,
+  "httpServer": "NettyWrapper",
+  "tokenCallbacks": [
+    {
+      "issuerId": "seed",
+      "tokenExpiry": 3600,
+      "requestMappings": [
+        {
+          "requestParam": "subject",
+          "match": "demo-admin",
+          "claims": { "sub": "demo-admin", "aud": ["seed-api"], "roles": ["ADMIN"] }
+        },
+        {
+          "requestParam": "subject",
+          "match": "demo-user",
+          "claims": { "sub": "demo-user", "aud": ["seed-api"], "roles": ["USER"] }
+        },
+        {
+          "requestParam": "client_id",
+          "match": "demo-admin",
+          "claims": { "sub": "demo-admin", "aud": ["seed-api"], "roles": ["ADMIN"] }
+        },
+        {
+          "requestParam": "client_id",
+          "match": "demo-user",
+          "claims": { "sub": "demo-user", "aud": ["seed-api"], "roles": ["USER"] }
+        },
+        {
+          "requestParam": "client_id",
+          "match": "seed-swagger",
+          "claims": { "sub": "demo-user", "aud": ["seed-api"], "roles": ["USER"] }
+        }
+      ]
+    }
+  ]
+}

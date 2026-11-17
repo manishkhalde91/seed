@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.company.seed.common.operations.application.OperationServiceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-17T11:35:17.242Z" hostname="IDXPUNMAC054L.local" time="0.111">
+  <properties/>
+  <testcase name="anActorNoScopeAcceptsCannotStartAnOperation()" classname="com.company.seed.common.operations.application.OperationServiceTest" time="0.034"/>
+  <testcase name="aLongFailureMessageIsCutWithoutSplittingACharacter()" classname="com.company.seed.common.operations.application.OperationServiceTest" time="0.006"/>
+  <testcase name="anUnknownOperationIsNotFound()" classname="com.company.seed.common.operations.application.OperationServiceTest" time="0.001"/>
+  <testcase name="theRequesterAndAnAdminReadAnOperationAndAnotherUserIsForbidden()" classname="com.company.seed.common.operations.application.OperationServiceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

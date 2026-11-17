@@ -1,0 +1,104 @@
+{
+  "generation_hash": "f8a5c8e1dc91008257fe",
+  "inputs": {
+    "project_root": "/Users/manish.khalde/Desktop/seed/monorepo-sco",
+    "renderer_sha256": "080d9dc551d75262f4cde3bb1c88ddea1b3d2f4ca742c840af455b0f682614bb",
+    "resolved_values": {
+      "config.core.communication_language": "English",
+      "config.core.document_output_language": "English",
+      "config.modules.snap-module.implementation_artifacts": "/Users/manish.khalde/Desktop/seed/monorepo-sco/_snap-output/implementation-artifacts",
+      "config.modules.snap-module.planning_artifacts": "/Users/manish.khalde/Desktop/seed/monorepo-sco/_snap-output/planning-artifacts",
+      "customization.workflow.activation_steps_append": [],
+      "customization.workflow.activation_steps_prepend": [],
+      "customization.workflow.implementation_handoff": "Pick the model for the implementation subagent (only when the runtime lets you set one; otherwise ignore this and use the default):\n\n- Read `{spec_file}`'s `## Tasks & Acceptance` and `<frozen-after-approval>` sections first.\n- Use a small, fast model (e.g. Haiku) by default — the spec is a complete checklist and step-04 review with loopback is the safety net.\n- Escalate to a model at the current session's capability (e.g. Sonnet) when ANY of these hold:\n  - the change touches authentication/authorization, concurrency/async, data migrations, money/billing, or cryptography;\n  - the `## Tasks & Acceptance` Execution list has more than 5 tasks;\n  - the spec introduces a pattern the codebase does not already use (per the Code Map);\n  - a prior review loopback already sent this spec back to implementation (`review_loop_iteration` >= 1 in frontmatter).\n- When in doubt, escalate.\n\nLaunch a subagent with no prior conversation context, on the chosen model, with this prompt:\n\n> Read {spec_file} fully and implement it — the spec is the sole source of truth. Load every file listed in its frontmatter `context:` before you start.\n>\n> Before reporting done, run `snap-guard check --diff <baseline_commit from the spec's frontmatter>` and fix every finding. If `snap-guard` is not installed, say \"snap-guard: not run\" and continue.\n>\n> When done, report what you changed, how you verified it, and anything left incomplete or risky.\n",
+      "customization.workflow.on_complete": "",
+      "customization.workflow.oneshot_review_layers": [
+        {
+          "id": "blind-hunter",
+          "instruction": "Launch a context-free subagent with this prompt:\n\nConduct a review of CONTENT.\nLook for what's missing, not only what's wrong.\nCompute your finding floor N from the size of the changes: N = min(floor(sqrt(kB) + 1), 10), where kB is the changed content's size in kilobytes. State the arithmetic in one line, then find at least N issues to fix or improve.\nOutput a Markdown list of findings only — no severity, priority, or ranking.\nIf the content is empty, stop and say so.\nIf you have zero findings, re-check and keep thinking; do not stop with an empty list.\n\nCONTENT:\nThe changed files in the current worktree. Inspect them directly before reviewing.\n\nDo not invoke any skill, and do not spawn subagents of your own — you are the reviewer. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.\n\n",
+          "name": "Blind Hunter"
+        }
+      ],
+      "customization.workflow.open_spec": "",
+      "customization.workflow.persistent_facts": [
+        "Ground file paths in the SnapCT context lake, never in guesses. Step-01 asks `{project-root}/_snap/scripts/resolve_artifacts.py` for the feature page that owns the paths you are touching; use the page's `source:` paths and Modules section to find files, then confirm them in the code before writing them into the Code Map. When the resolver returns nothing (no lake, or no feature owns the paths), search the codebase and name the most likely files. Never write vague paths like 'in the lead service'.",
+        "In step-05's completion summary, when step-04b recorded a lake write-back, add one short line: the feature page updated, the rule IDs changed, retired and added, and any shared rule deferred to SnapCT. If the lake sits outside this repository, say the page edit is not in this commit and name the lake path so the human can commit it on the matching branch. If step-04b skipped the write-back because the lake predates the current layout, or because a lake exists but SnapCT is not installed, say so in one soft line. When there is no lake at all, say nothing about a lake.",
+        "If a file matching {project-root}/**/annotations/annotations.yaml exists, load its entries with status 'open' whose 'file' points at the story or artifacts you are working on; treat them as PM/stakeholder feedback on par with acceptance criteria. When your work addresses one, edit that YAML entry in place: set status 'resolved' and add a one-line 'resolved_note'. Never apply an annotation the user did not confirm, and never delete entries.",
+        "In step 03 Verify, run `snap-guard check --diff {baseline_commit}` before the spec's own commands. If `snap-guard` is not installed or cannot run (for example offline), say \"snap-guard: not run\" and continue. If it reports findings, show them and let the person decide; never stop the build for this alone.",
+        "In step 04 review triage, a finding produced by `snap-guard` that is still open from Verify is added to the `## Review Triage Log`. It is deterministic: it may be fixed, or overridden with a reason written to the triage log, and is never marked `false` or `maybe-false`.",
+        "Doubt check: scan the new code comments and your own final summary for doubt phrases (\"may not exist\", \"assuming\", \"not sure\", \"hypothetical\", \"you may need to replace\", \"placeholder\" outside HTML attributes and UI copy). Report each one as a warning in the completion summary. An unresolved doubt is closed by confirming the fact, or by the person accepting it with a reason in the triage log. It never blocks the build.",
+        "Snap commit lines: snap-build never runs `git commit`. Where step-05 ('Commit and Complete') or step-oneshot ('Commit') tells you to commit, do this instead. When version control is available and a repo has changes from this build, do it for EACH git repo you changed (a multi-repo project can have several: the code repos and the repo that holds the Snap folder, with the specs and the lake page; a single-repo project has one). In each such repo: (1) stage with `git -C <repo> add` every file of this change that belongs to that repo (code, tests, `{spec_file}`, the lake page edit), and no unrelated file; (2) as the very last thing you do in that repo, run `python3 {project-root}/_snap/scripts/snap_trailers.py set --repo <repo> --skill snap-build` plus the values you really have: `--tech-spec {spec_file}` when that file exists; `--spec <folder or SPEC.md path>` when the work came from a snap-spec spec; `--story <id>` or `--requirement <id>` when you have one; `--prompt \"<short title>\"` only when you have none of the others. Use the same values for every repo. Add `--model <your model id>` only when you know it. Never invent a value. The title for `--prompt` is a few plain words, never client names, people, or secrets, because a commit message stays in git history for good. Staging anything in that repo after this call makes the lines be skipped, so call it last for that repo. (3) Do not commit. In the completion summary, say once that the files are staged and not committed, list each repo that has staged files with the command `git -C <repo> commit` (just `git commit` for a single repo), and say the Snap lines will be added to each message. Leave out the commit hash line, and offer the pull-request next action only as something for after the person commits. If the script prints a warning that the commit hook is not installed in a repo, pass that line on to the person. None of this ever blocks the build."
+      ],
+      "customization.workflow.review_layers": [
+        {
+          "id": "blind-hunter",
+          "instruction": "Launch a context-free subagent with this prompt:\n\nConduct a review of CONTENT.\nLook for what's missing, not only what's wrong.\nCompute your finding floor N from the diff file's size: N = min(floor(sqrt(kB) + 1), 10), where kB is the file's size in kilobytes. State the arithmetic in one line, then find at least N issues to fix or improve.\nOutput a Markdown list of findings only — no severity, priority, or ranking.\nIf the content is empty, stop and say so.\nIf you have zero findings, re-check and keep thinking; do not stop with an empty list.\n\nCONTENT: the unified diff at `{diff_file}`. Read that file — it is the content under review.\n\nDo not invoke any skill, and do not spawn subagents of your own — you are the reviewer. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.\n\n",
+          "name": "Blind Hunter"
+        },
+        {
+          "id": "edge-case-hunter",
+          "instruction": "Launch a context-free subagent with this prompt:\n\nRead `{skill-root}/review-prompts/edge-case-hunter.md` completely and follow it as your review instructions.\n\nclaims_file (leave unread until your instructions call for it): {claims_file}\n\nReview content: the unified diff at `{diff_file}`. Read that file — it is the content under review.\n\nDo not invoke any skill, and do not spawn subagents of your own — you are the reviewer. If the instruction file is unreadable, report that exact failure and stop. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.\n\n",
+          "name": "Edge Case Hunter"
+        },
+        {
+          "id": "verification-gap",
+          "instruction": "Launch a context-free subagent with this prompt:\n\nRead `{skill-root}/review-prompts/verification-gap.md` completely and follow it as your review instructions.\n\nReview content: the unified diff at `{diff_file}`. Read that file — it is the content under review.\n\nDo not invoke any skill, and do not spawn subagents of your own — you are the reviewer. If the instruction file is unreadable, report that exact failure and stop. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.\n\n",
+          "name": "Verification Gap Reviewer"
+        },
+        {
+          "id": "slop-reviewer",
+          "instruction": "Launch a context-free subagent with this prompt:\n\nRead `{skill-root}/review-prompts/slop-reviewer.md` completely and follow it as your review instructions.\n\ndiff_file: the unified diff at `{diff_file}`. Read that file — it is the content under review.\n\nDo not invoke any skill, and do not spawn subagents of your own — you are the reviewer. If the instruction file is unreadable, report that exact failure and stop. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.\n\n",
+          "name": "Slop Reviewer"
+        },
+        {
+          "id": "security-hunter",
+          "instruction": "Launch a context-free subagent with this prompt:\n\nYou are a Security Hunter. Review this diff for security vulnerabilities. Check for: authentication and authorization gaps, injection risks (SQL, command, XSS), sensitive data exposure, insecure defaults, OWASP Top 10 patterns, hardcoded secrets or credentials, and missing input validation at system boundaries. Do not assign final severity, priority, or vulnerability-category ranking — triage owns that. Output findings as a Markdown list. Each finding: one-line title, affected file and line if known, and evidence from the diff.\n\nCONTENT: the unified diff at `{diff_file}`. Read that file — it is the content under review.\n\nDo not invoke any skill, and do not spawn subagents of your own — you are the reviewer. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.\n\n",
+          "name": "Security Hunter"
+        }
+      ]
+    },
+    "source_sha256": {
+      "compile-epic-context.md": "6793b15ae85766cee529e6b349e45f2c6ec9e3212019611c29e8c77b4dc4b924",
+      "references/claims-check.md": "50ea17cb89a78ef815286dde2dabfd09f1dc9841d07a10857f88b39ab7b9bd2a",
+      "references/deletion-check.md": "0f1f124e4e957147e89164a272b10bedc694ad0d9ad2618c8610ac74ee9cb0da",
+      "review-prompts/edge-case-hunter.md": "8fc046af1cbf4ecc928207cec75e29c3c260adb86cc7da77537ade3b3a3b9448",
+      "review-prompts/slop-reviewer.md": "e89afd98ab6bf19b197d5343fa43b29f072990429b21ae67731326de583bf932",
+      "review-prompts/tech-spec-critic.md": "8983da2f2674bbbdc51db87646c3858a9e839c3df3296afe7ea482d1c221c429",
+      "review-prompts/verification-gap.md": "45ab0b8c4c56c5c055c97a293a8591a67e256d0b1a2058ce1f093cd866be8d03",
+      "spec-template.md": "08fe7e714e6d61d916e2ac0807add0e1637777d350063d15a4d43995df8266f8",
+      "step-01-clarify-and-route.md": "a3e1dc926fa1ca557559ac7af75399c5d2c349655449c3d1391f91794e1b21ec",
+      "step-02-plan.md": "07070760628267defe2d566d36ccc9a3caa68c048c8b0f7ed29e49e6e7d3ce7f",
+      "step-03-implement.md": "fb635e3f9b118af4e8efb4f812e6cd92f2c9554c70b55d1a7f6c0e91b705dc41",
+      "step-04-review.md": "eb495b9120e1e88dc60ed9585bd3aa6035512dda4f870818a42438ab05c979c6",
+      "step-04b-writeback.md": "3bf92ae4064eeaf24c70853d858a48e893e6acaf05dcc1b1c2bc72b2d3748c44",
+      "step-05-present.md": "3dcb7ce840edfdb02a7b2f6d93d1ec863412856841255d95bd16b6a6922de25b",
+      "step-oneshot.md": "3fd6a01e66f32aac50f879510f9b9527704e4dcaf4dddc0d3aa1a7acc058824b",
+      "sync-sprint-status.md": "7ff44d21f5d813f4993780271eec8df2fce1373f525ff80e595b7c10618c4c36",
+      "workflow.md": "d7e5df673c59828bd7e0325e4d7fbdcf1c9f809d9a577744a421a57c6387b925"
+    }
+  },
+  "outputs": {
+    "compile-epic-context.md": "6793b15ae85766cee529e6b349e45f2c6ec9e3212019611c29e8c77b4dc4b924",
+    "references/claims-check.md": "50ea17cb89a78ef815286dde2dabfd09f1dc9841d07a10857f88b39ab7b9bd2a",
+    "references/deletion-check.md": "0f1f124e4e957147e89164a272b10bedc694ad0d9ad2618c8610ac74ee9cb0da",
+    "review-prompts/edge-case-hunter.md": "8fc046af1cbf4ecc928207cec75e29c3c260adb86cc7da77537ade3b3a3b9448",
+    "review-prompts/slop-reviewer.md": "e89afd98ab6bf19b197d5343fa43b29f072990429b21ae67731326de583bf932",
+    "review-prompts/tech-spec-critic.md": "8983da2f2674bbbdc51db87646c3858a9e839c3df3296afe7ea482d1c221c429",
+    "review-prompts/verification-gap.md": "45ab0b8c4c56c5c055c97a293a8591a67e256d0b1a2058ce1f093cd866be8d03",
+    "spec-template.md": "08fe7e714e6d61d916e2ac0807add0e1637777d350063d15a4d43995df8266f8",
+    "step-01-clarify-and-route.md": "a69bfd358e5e1cb9e0d6ae36fafb1c0be163d568835afd66550a37219d6d5df1",
+    "step-02-plan.md": "2b3e9749c145c9afec8642b6e0907fc759afa582238d9ed505f336853a13f0ab",
+    "step-03-implement.md": "acd08e570d038763ba3834c270910c7d71d5c6a791a77d3237735c85ca4ccb18",
+    "step-04-review.md": "e4f1c010eaa46400453d28ca35bf8c4bde19adc7b543f8bcde50038c5d2f1ade",
+    "step-04b-writeback.md": "c3dcfcfda8c2e28da6d1c06bf8f23bbcc3aeef664566161602dc398691e6231b",
+    "step-05-present.md": "b7f228e28c1cb4443de99bd46ff6414df3f2337c992e382fce52e8f775cbb172",
+    "step-oneshot.md": "e80bd21491af87b765a0e58a71b6db18184afad58d9eb7a029c5936805ea3fd9",
+    "sync-sprint-status.md": "3bb7c870ef9e39a470364a0c7b496eab995bd8247e836a21d9a79d2a2dd09288",
+    "workflow.md": "d3899f8b57b24da798fcf51f04bb6464fdfeb2c187f6f8473e0f578408f37459"
+  },
+  "project_root": "/Users/manish.khalde/Desktop/seed/monorepo-sco",
+  "project_slug": "monorepo-sco",
+  "root_hash": "5793496e8d58",
+  "schema_version": 1,
+  "skill": "snap-build"
+}

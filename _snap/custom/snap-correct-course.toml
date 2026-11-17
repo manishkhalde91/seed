@@ -1,0 +1,15 @@
+# Snap default customization -- team-editable. Managed alongside snap-customize skill.
+#
+# Annotations-queue fact split (this file's wording is the canonical base for the others).
+#
+# Merge rules (SNAP): arrays append.
+
+[workflow]
+
+activation_steps_append = [
+  "If a file matching {project-root}/**/annotations/annotations.yaml exists, load its entries with status 'open' whose 'file' points at the PRD or epics — the pending change-request queue from PMs/stakeholders (created via snap-lens). Present them to the user alongside their stated change and ask which to incorporate.",
+]
+
+persistent_facts = [
+  "After a confirmed change is applied through this workflow, edit each incorporated annotations.yaml entry in place: set status 'resolved' and add a one-line 'resolved_note'. Never apply an annotation the user did not confirm, and never delete entries.",
+]

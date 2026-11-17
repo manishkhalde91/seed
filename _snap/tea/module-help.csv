@@ -1,0 +1,7 @@
+module,skill,display-name,menu-code,description,action,args,phase,preceded-by,followed-by,required,output-location,outputs
+Test Architecture Enterprise,_meta,,,,,,,,,false,https://snap-code-org.github.io/snap-method-test-architecture-enterprise/llms.txt,
+Test Architecture Enterprise,snap-test-design,Test Design,TD,Risk-based test planning.,,,3-solutioning,,snap-test-framework,false,test_artifacts,test design document
+Test Architecture Enterprise,snap-test-framework,Test Framework,TF,Initialize production-ready test framework.,,,3-solutioning,snap-test-design,snap-testarch-ci,false,test_artifacts,framework scaffold
+Test Architecture Enterprise,snap-test-atdd,ATDD,AT,Generate red-phase acceptance test scaffolds before implementation.,,,4-implementation,snap-spec,snap-build,false,test_artifacts,atdd-checklist|red-phase acceptance tests
+Test Architecture Enterprise,snap-test-automate,Test Automation,TA,Expand test coverage.,,,4-implementation,snap-test-atdd,,false,test_artifacts,test suite
+Test Architecture Enterprise,snap-test-review,Test Review,RV,Quality audit (0-100 scoring).,,,4-implementation,snap-test-automate,,false,test_artifacts,review report

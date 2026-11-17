@@ -1,0 +1,15 @@
+# One-off migration run for shared environments (data-and-migrations.md §11): run the image once
+# with this profile before the new version starts. It needs DB_* and DB_OWNER_*, migrates as
+# DB_OWNER_USERNAME, starts no web server and exits 0 once the context has closed (MigrateRunner);
+# a failed migration fails startup, so the process exits 1.
+spring:
+  main:
+    web-application-type: none
+  # Only migrate: no outstanding event publication is resubmitted, so no listener runs.
+  modulith:
+    events:
+      republish-outstanding-events-on-restart: false
+  flyway:
+    enabled: true
+    user: ${DB_OWNER_USERNAME:seed_owner}
+    password: ${DB_OWNER_PASSWORD}

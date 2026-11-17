@@ -1,0 +1,39 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v snap-guard >/dev/null 2>&1 && snap-guard hook pre-tool || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v snap-guard >/dev/null 2>&1 && snap-guard hook post-tool || true",
+            "timeout": 8
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v snap-guard >/dev/null 2>&1; then snap-guard hook session-start || true; else echo 'snap-guard not installed: guardrails are off'; fi",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

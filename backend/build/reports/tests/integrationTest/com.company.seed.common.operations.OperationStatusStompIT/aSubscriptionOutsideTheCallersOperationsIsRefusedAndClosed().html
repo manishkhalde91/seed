@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - aSubscriptionOutsideTheCallersOperationsIsRefusedAndClosed()</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<div class="breadcrumbs">
+<a class="breadcrumb" href="../index.html">all</a> &gt; 
+<a class="breadcrumb" href="index.html">com.company.seed.common.operations.OperationStatusStompIT</a> &gt; 
+<span class="breadcrumb">aSubscriptionOutsideTheCallersOperationsIsRefusedAndClosed()</span>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="successGroup" href="#">Gradle Test Run :integrationTest</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Gradle Test Run :integrationTest</h2>
+<h1>aSubscriptionOutsideTheCallersOperationsIsRefusedAndClosed()</h1>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="" href="#">summary</a>
+</li>
+<li>
+<a class="" href="#">standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>summary</h2>
+<div>
+<div class="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>skipped</p>
+</div>
+</td>
+<td>
+<div class="infoBox duration">
+<div class="counter">0.040s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="tab">
+<h2>standard output</h2>
+<span class="code">
+<div class="clipboard-copy-btn-container">
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="root-0-test-stdout-aSubscriptionOutsideTheCallersOperationsIsRefusedAndClosed()">Copy</button>
+</div>
+<pre id="root-0-test-stdout-aSubscriptionOutsideTheCallersOperationsIsRefusedAndClosed()">{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.744601Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /ws -&gt; 101 in 0 ms&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95af-7774-8a05-baf94cacc08f&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/ws&quot;,&quot;response&quot;:{&quot;status_code&quot;:101}},&quot;event&quot;:{&quot;duration&quot;:639167},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.745476Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-2&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP session 2fd2eddb-8fbf-48a0-b923-9135e0104c46 connected&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;other-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95b1-77bb-b0bf-3a2409221afc&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.747252Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;WARN&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-3&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP subscription to /app/operations/01a1e94a-95ab-74fc-a706-8f6561c649d0 denied: not the requester or an ADMIN&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;other-user&quot;},&quot;operationId&quot;:&quot;01a1e94a-95ab-74fc-a706-8f6561c649d0&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95b1-77bb-b0bf-3a2409221afc&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.748665Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-5&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /ws -&gt; 101 in 0 ms&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95b4-7185-baca-2896e8501015&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/ws&quot;,&quot;response&quot;:{&quot;status_code&quot;:101}},&quot;event&quot;:{&quot;duration&quot;:392041},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.749254Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-6&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP session d7adfc99-92d1-4704-845e-131f356eb236 connected&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;other-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95b5-74b7-8526-bda5447428ff&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.750341Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;WARN&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-7&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP subscription to /topic/operations/01a1e94a-95ab-74fc-a706-8f6561c649d0 denied: not the requester or an ADMIN&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;other-user&quot;},&quot;operationId&quot;:&quot;01a1e94a-95ab-74fc-a706-8f6561c649d0&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95b5-74b7-8526-bda5447428ff&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.752946Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-9&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /ws -&gt; 101 in 0 ms&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95b8-746a-9c1b-8b0528eddc9e&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/ws&quot;,&quot;response&quot;:{&quot;status_code&quot;:101}},&quot;event&quot;:{&quot;duration&quot;:330458},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.753537Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-10&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP session 63cf678b-793f-47a9-a012-56c933736f8e connected&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95b9-754e-b75e-7ea38c1cbd16&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.753890Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP frame refused with forbidden-destination: not a destination of the contract (/topic/other)&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95b9-754e-b75e-7ea38c1cbd16&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.756195Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-3&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /ws -&gt; 101 in 0 ms&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95bb-7599-b5a7-2454854bf442&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/ws&quot;,&quot;response&quot;:{&quot;status_code&quot;:101}},&quot;event&quot;:{&quot;duration&quot;:314041},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.756744Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-4&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP session 5348ffbc-9710-4ff7-a648-b6cf214609a1 connected&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95bc-70dc-a8e4-aeb671c3a739&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.758228Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-5&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP frame refused with not-found: no such operation (/topic/operations/4318018d-bf5f-4f25-94a1-1ba6a45f3362)&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;operationId&quot;:&quot;4318018d-bf5f-4f25-94a1-1ba6a45f3362&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95bc-70dc-a8e4-aeb671c3a739&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.760829Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-7&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /ws -&gt; 101 in 0 ms&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95c0-741f-a0e1-ca6aa8d2af19&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/ws&quot;,&quot;response&quot;:{&quot;status_code&quot;:101}},&quot;event&quot;:{&quot;duration&quot;:437583},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.761340Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-8&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP session 37ad446b-8c3b-43ae-ba8b-5bf36533fe5b connected&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95c1-7322-b3a9-c84df0b869d4&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.761693Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-9&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP frame refused with not-found: not an operation ID (/topic/operations/01A1E94A-95AB-74FC-A706-8F6561C649D0)&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95c1-7322-b3a9-c84df0b869d4&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.763947Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /ws -&gt; 101 in 0 ms&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95c3-75fb-b821-93daa4dc9d26&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/ws&quot;,&quot;response&quot;:{&quot;status_code&quot;:101}},&quot;event&quot;:{&quot;duration&quot;:295375},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.764485Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-2&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP session ab65c554-8434-4f86-b705-cd8e1b677e0d connected&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95c4-736e-bbb8-f01b1bfd6493&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.764829Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-3&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP frame refused with not-found: not an operation ID (/topic/operations/not-a-uuid)&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95c4-736e-bbb8-f01b1bfd6493&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.767131Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-5&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /ws -&gt; 101 in 0 ms&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95c6-76f7-85bf-c65ab2baab3c&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/ws&quot;,&quot;response&quot;:{&quot;status_code&quot;:101}},&quot;event&quot;:{&quot;duration&quot;:323458},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.767676Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-6&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP session 73016cdf-226f-4cf6-8f6e-cbf9adafd842 connected&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95c7-7596-b784-2393a76796ce&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.767998Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-7&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP frame refused with not-found: not an operation ID (/topic/operations/*)&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95c7-7596-b784-2393a76796ce&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.770372Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-9&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /ws -&gt; 101 in 0 ms&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95c9-75b0-9b60-6e72e4d18bbd&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/ws&quot;,&quot;response&quot;:{&quot;status_code&quot;:101}},&quot;event&quot;:{&quot;duration&quot;:436792},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.770903Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-10&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP session 02b5f022-769f-4741-873d-677d00337031 connected&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95ca-7685-bc99-4f2ffe0f97de&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.772659Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-1&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP frame refused with not-found: no such operation (/app/operations/e8a98cce-97bb-4026-8fd9-d8f60d419a11)&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;operationId&quot;:&quot;e8a98cce-97bb-4026-8fd9-d8f60d419a11&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95ca-7685-bc99-4f2ffe0f97de&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.774423Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-3&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /ws -&gt; 101 in 0 ms&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95ce-7646-b1c3-32fc7e411796&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/ws&quot;,&quot;response&quot;:{&quot;status_code&quot;:101}},&quot;event&quot;:{&quot;duration&quot;:326709},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.774930Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-4&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP session 07684f91-a7d9-401e-802b-bd6573a7586b connected&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95ce-7647-bbbe-33b26a50e6ed&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.775284Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-5&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP frame refused with forbidden-destination: not a destination of the contract (/user/queue/errors)&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95ce-7647-bbbe-33b26a50e6ed&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.777117Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.common.logging.RequestLoggingFilter&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-7&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;GET /ws -&gt; 101 in 0 ms&quot;,&quot;correlationId&quot;:&quot;01a1e94a-95d0-73eb-b498-8461fc844265&quot;,&quot;http&quot;:{&quot;request&quot;:{&quot;method&quot;:&quot;GET&quot;},&quot;route&quot;:&quot;/ws&quot;,&quot;response&quot;:{&quot;status_code&quot;:101}},&quot;event&quot;:{&quot;duration&quot;:322667},&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.777669Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-8&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP session 249ad33e-4cec-40a8-af77-39c0c5898138 connected&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95d1-7158-97cf-70aec0f1d47a&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+{&quot;@timestamp&quot;:&quot;2026-11-17T11:35:41.778047Z&quot;,&quot;log&quot;:{&quot;level&quot;:&quot;INFO&quot;,&quot;logger&quot;:&quot;com.company.seed.security.ws.StompAuthorizationInterceptor&quot;},&quot;process&quot;:{&quot;pid&quot;:7305,&quot;thread&quot;:{&quot;name&quot;:&quot;http-nio-auto-9-exec-9&quot;}},&quot;service&quot;:{&quot;name&quot;:&quot;seed&quot;,&quot;node&quot;:{}},&quot;message&quot;:&quot;STOMP frame refused with forbidden-destination: not a destination of the contract (/topic/**)&quot;,&quot;user&quot;:{&quot;id&quot;:&quot;test-user&quot;},&quot;correlationId&quot;:&quot;01a1e94a-95d1-7158-97cf-70aec0f1d47a&quot;,&quot;ecs&quot;:{&quot;version&quot;:&quot;8.11&quot;}}
+</pre>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.8.2</a> at 17-Nov-2026, 5:06:08 pm</p>
+</div>
+</div>
+</body>
+</html>

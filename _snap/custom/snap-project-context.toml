@@ -1,0 +1,16 @@
+# Snap default customization -- team-editable. Managed alongside snap-customize skill.
+#
+# Bridges the SnapCT context lake into AGENTS.md. SnapCT's Phase 2 writes agents-candidates.md:
+# proposed AGENTS.md lines, each with a source. snap-project-context offers them in its interview
+# and path-checks them like any other outside-the-repo claim, so none is kept unverified.
+#
+# The path is the default `context_lake` (see _snap/config.toml). A multi-repo system that moved
+# the lake sets its own path here or in _snap/custom/snap-project-context.user.toml.
+#
+# Merge rules (SNAP): scalars override; arrays append.
+
+[workflow]
+
+external_sources = [
+  "file:{project-root}/_snap-output/context/agents-candidates.md",
+]

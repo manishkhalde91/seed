@@ -1,0 +1,205 @@
+spring:
+  application:
+    name: seed
+  # The API is a resource server only (security.md §1): no local users, so Boot's generated
+  # in-memory user (and its logged password) is never created.
+  autoconfigure:
+    exclude: org.springframework.boot.security.autoconfigure.UserDetailsServiceAutoConfiguration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # The OIDC issuer; its JWKS is found through it on the first token. Required: startup
+          # fails when unset (security.SecurityConfig).
+          issuer-uri: ${OIDC_ISSUER_URI:}
+  # Uploads (multipart/form-data) have their own limits, per file and per request; larger: 413
+  # PAYLOAD_TOO_LARGE ("Upload exceeds 10MB"). The request limit counts the boundaries and part
+  # headers too, so a file must be a little smaller than it. Every other request body has
+  # seed.limits.max-body-size (security.md §6).
+  servlet:
+    multipart:
+      max-file-size: ${SEED_MAX_UPLOAD_SIZE:10MB}
+      max-request-size: ${SEED_MAX_UPLOAD_SIZE:10MB}
+  modulith:
+    # Only packages whose package-info.java carries @ApplicationModule are modules.
+    # The feature/ package is not a module; each feature/<module> is (see SeedApplication).
+    detection-strategy: explicitly-annotated
+    # Modulith moments (time-passed events) is unused, and its auto-configuration carries
+    # @EnableScheduling, which would schedule work in migrate too (SchedulingConfig owns that).
+    moments:
+      enabled: false
+    # The event publication registry (realtime-and-storage.md §1.2): common.event_publication,
+    # created by Flyway. Incomplete publications are resubmitted on restart (not in migrate) and by
+    # the event-publication-resubmit job.
+    events:
+      jdbc:
+        schema: common
+        schema-initialization:
+          enabled: false
+      republish-outstanding-events-on-restart: true
+      # The resubmit job only picks up FAILED publications. The staleness monitor (runs where
+      # scheduling does, so not in migrate) marks failed a publication still PUBLISHED after 5
+      # minutes (its task was rejected or lost) or PROCESSING/RESUBMITTED after 15 (its instance
+      # died mid-work). A slower work may then run twice; its operation keeps one outcome.
+      staleness:
+        published: 5m
+        processing: 15m
+        resubmitted: 15m
+  # The executor of @Async work and @ApplicationModuleListener methods: bounded, with the request's
+  # MDC, security context and actor scope carried over (config.AsyncConfig). "force": Boot creates it
+  # although the STOMP broker defines executors of its own (which run the broker's channels).
+  task:
+    # The @Scheduled jobs, the STOMP token-expiry check and the staleness monitor: two threads, so a
+    # long housekeeping job does not hold back the others.
+    scheduling:
+      pool:
+        size: 2
+    execution:
+      mode: force
+      pool:
+        core-size: 4
+        max-size: 8
+        queue-capacity: 200
+  # PostgreSQL (data-and-migrations.md §1, §9). The application connects as DB_USERNAME (DML only);
+  # migrations run as DB_OWNER_USERNAME. Every statement times out after 15 s. DB_SSLMODE is
+  # require or verify-full in shared environments. logServerErrorDetail=false keeps the server's
+  # "Detail:" text (row values) out of exception messages and so out of logs.
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:seed_db}?options=-c%20statement_timeout=15s&sslmode=${DB_SSLMODE:prefer}&logServerErrorDetail=false
+    username: ${DB_USERNAME:seed_app}
+    password: ${DB_PASSWORD}
+    # Hikari binds plain milliseconds: 3 s, 30 min, 20 s.
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 10
+      connection-timeout: 3000
+      max-lifetime: 1800000
+      leak-detection-threshold: 20000
+  jpa:
+    open-in-view: false
+    hibernate:
+      # Flyway is the only way the schema changes; Hibernate only checks the mapping against it.
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+          batch_size: 50
+        order_inserts: true
+  # Off by default: shared environments migrate once with the migrate profile before the new version
+  # starts (application-migrate.yml); local and tests migrate on startup. The owner credentials
+  # (spring.flyway.user/password) are set only in the profiles that migrate.
+  flyway:
+    enabled: false
+    # A migration may run longer than the application's 15 s statement timeout.
+    init-sqls: SET statement_timeout = 0
+    # Each feature module appends its own location (classpath:db/migration/<module>) and schema.
+    # sample is DEMO ONLY: remove its location and schema with the module (README).
+    locations: classpath:db/migration/common,classpath:db/migration/sample
+    schemas: common,sample
+    default-schema: common
+    table: flyway_schema_history
+    create-schemas: true
+    placeholders:
+      # The role the grants in the migrations go to: the application user.
+      app_role: ${DB_USERNAME:seed_app}
+    clean-disabled: true
+    validate-on-migrate: true
+    out-of-order: false
+server:
+  tomcat:
+    # Form posts are parsed by the container, outside the body-size filter: the same limit.
+    max-http-form-post-size: ${seed.limits.max-body-size}
+    # A refused upload is read to the end (up to the upload limit) so the client gets the 413
+    # envelope; with Tomcat's 2 MB default the connection is reset and the 413 is lost. A refused
+    # body larger than this may still get a connection reset.
+    max-swallow-size: ${SEED_MAX_UPLOAD_SIZE:10MB}
+  error:
+    # JsonErrorController writes /error responses; these keep Boot's own error attributes from ever
+    # exposing exception text, class names, binding errors or stack traces (errors-and-logging.md §2).
+    include-exception: false
+    include-message: never
+    include-binding-errors: never
+    include-stacktrace: never
+logging:
+  level:
+    # Hibernate would log every SQL error itself (category org.hibernate.orm.jdbc.error in
+    # Hibernate 7); GlobalExceptionHandler logs each exception once (errors-and-logging.md §2).
+    org.hibernate.orm.jdbc.error: off
+  structured:
+    # JSON (ECS) on the console in every profile except local (application-local.yml).
+    format:
+      console: ecs
+    ecs:
+      service:
+        name: seed
+    json:
+      # Masks password, secret, token, authorization, apiKey, privateKey and email members.
+      customizer: com.company.seed.common.logging.SensitiveMemberMaskingCustomizer
+seed:
+  # common.jobs.JobsProperties (realtime-and-storage.md §3): Spring cron expressions ("-" turns a job
+  # off) and retentions. Each job runs on one instance at a time (PostgreSQL advisory lock).
+  jobs:
+    operation-cleanup-cron: ${SEED_OPERATION_CLEANUP_CRON:0 30 3 * * *}
+    operation-retention: 7d
+    event-publication-cleanup-cron: ${SEED_EVENT_PUBLICATION_CLEANUP_CRON:0 45 3 * * *}
+    event-publication-retention: 7d
+    event-publication-resubmit-cron: ${SEED_EVENT_PUBLICATION_RESUBMIT_CRON:0 */5 * * * *}
+    event-publication-resubmit-after: 5m
+  # common.limits.LimitsProperties (security.md §6). The write rate is counted on each instance
+  # separately: N instances allow up to N x the limit.
+  limits:
+    # The largest request body that is not multipart/form-data (1MB = 1,048,576 bytes); larger: 413.
+    max-body-size: ${SEED_MAX_BODY_SIZE:1MB}
+    # Writes (POST, PUT, PATCH, DELETE) per caller per minute; over it: 429 with Retry-After.
+    writes-per-minute: ${SEED_WRITES_PER_MINUTE:60}
+  # Live operation status over STOMP at /ws (realtime-and-storage.md §1.3). A session whose token
+  # has expired is closed with ERROR token-expired at the next check.
+  realtime:
+    token-check-interval: ${SEED_REALTIME_TOKEN_CHECK_INTERVAL:30s}
+  # security.SeedSecurityProperties (security.md §1, §2, §4).
+  security:
+    # Required: every access token's aud must contain it.
+    audience: ${OIDC_AUDIENCE:}
+    # The claim holding the roles; a dotted path (realm_access.roles) walks nested objects.
+    roles-claim: ${OIDC_ROLES_CLAIM:roles}
+    # Comma-separated exact origins; none by default.
+    cors-allowed-origins: ${CORS_ALLOWED_ORIGINS:}
+springdoc:
+  # Off unless SEED_API_DOCS_ENABLED=true (prod leaves it unset); local and dev default it to true.
+  # Where on, the docs are readable without a token; every API call made from Swagger UI needs one.
+  api-docs:
+    enabled: ${SEED_API_DOCS_ENABLED:false}
+  swagger-ui:
+    enabled: ${SEED_API_DOCS_ENABLED:false}
+    # Authorize signs in at the issuer with the authorization code flow and PKCE (no client secret).
+    oauth:
+      client-id: ${SWAGGER_UI_CLIENT_ID:seed-swagger}
+      use-pkce-with-authorization-code-grant: true
+  # Sorted keys, so the exported backend/openapi/api.yaml is deterministic.
+  writer-with-order-by-keys: true
+management:
+  server:
+    # Probes, metrics and the loggers endpoint are served on their own port, never on the
+    # application port. The port must be network-restricted: health and Prometheus answer anyone
+    # who reaches it; loggers (and any other exposed endpoint) needs an ADMIN token.
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus,loggers
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      # Anonymous callers see only the status; ADMIN tokens also see the components and details.
+      show-details: when-authorized
+      roles: ADMIN
+      group:
+        # Ready only with the database reachable, every classpath migration applied
+        # (SchemaVersionHealthIndicator) and the operation status listener listening
+        # (PgStatusListener); liveness never depends on the database.
+        readiness:
+          include: readinessState,db,schemaVersion,operationStatusListener
+        liveness:
+          include: livenessState

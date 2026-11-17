@@ -1,0 +1,868 @@
+{
+  "info": {
+    "name": "Seed API (local)",
+    "description": "Local seed backend (README: run with or without Docker). Tokens for demo-user (USER) and demo-admin (ADMIN) are fetched automatically from the mock OIDC provider before each request. Run the folders top to bottom: later requests use the IDs saved by earlier ones.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{userToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Gets demo tokens from the local mock OIDC provider when missing or about to expire.",
+          "// demo-user has role USER, demo-admin has role ADMIN (ADMIN implies USER).",
+          "const now = Date.now();",
+          "function ensureToken(clientId, variable) {",
+          "  const expiresAt = Number(pm.collectionVariables.get(variable + 'ExpiresAt') || 0);",
+          "  if (pm.collectionVariables.get(variable) && expiresAt - 30000 > now) { return; }",
+          "  pm.sendRequest({",
+          "    url: pm.variables.get('oidcUrl') + '/token',",
+          "    method: 'POST',",
+          "    header: { 'Content-Type': 'application/x-www-form-urlencoded' },",
+          "    body: { mode: 'urlencoded', urlencoded: [",
+          "      { key: 'grant_type', value: 'client_credentials' },",
+          "      { key: 'client_id', value: clientId },",
+          "      { key: 'client_secret', value: 'x' } ] }",
+          "  }, (error, response) => {",
+          "    if (error) { console.error('Token request failed', error); return; }",
+          "    const body = response.json();",
+          "    pm.collectionVariables.set(variable, body.access_token);",
+          "    pm.collectionVariables.set(variable + 'ExpiresAt', String(now + (body.expires_in || 3000) * 1000));",
+          "  });",
+          "}",
+          "ensureToken('demo-user', 'userToken');",
+          "ensureToken('demo-admin', 'adminToken');"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "managementUrl",
+      "value": "http://localhost:8081"
+    },
+    {
+      "key": "oidcUrl",
+      "value": "http://localhost:8090/seed"
+    },
+    {
+      "key": "userToken",
+      "value": ""
+    },
+    {
+      "key": "userTokenExpiresAt",
+      "value": ""
+    },
+    {
+      "key": "adminToken",
+      "value": ""
+    },
+    {
+      "key": "adminTokenExpiresAt",
+      "value": ""
+    },
+    {
+      "key": "recordId",
+      "value": ""
+    },
+    {
+      "key": "recordVersion",
+      "value": ""
+    },
+    {
+      "key": "operationId",
+      "value": ""
+    },
+    {
+      "key": "idempotencyKey",
+      "value": "postman-key-1"
+    }
+  ],
+  "item": [
+    {
+      "name": "0. Tokens (optional: requests fetch them automatically)",
+      "item": [
+        {
+          "name": "Get token: demo-user (USER)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{oidcUrl}}/token"
+            },
+            "description": "Client-credentials token from the local mock OIDC provider. Saved as `userToken`.",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                },
+                {
+                  "key": "client_id",
+                  "value": "demo-user"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "x"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const b = pm.response.json();",
+                  "pm.collectionVariables.set('userToken', b.access_token);",
+                  "pm.collectionVariables.set('userTokenExpiresAt', String(Date.now() + (b.expires_in || 3000) * 1000));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get token: demo-admin (ADMIN)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{oidcUrl}}/token"
+            },
+            "description": "Saved as `adminToken`.",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                },
+                {
+                  "key": "client_id",
+                  "value": "demo-admin"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "x"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const b = pm.response.json();",
+                  "pm.collectionVariables.set('adminToken', b.access_token);",
+                  "pm.collectionVariables.set('adminTokenExpiresAt', String(Date.now() + (b.expires_in || 3000) * 1000));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Current user (/me)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Correlation-Id",
+            "value": "postman-me-1"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/me"
+        },
+        "description": "Who the token belongs to: subject, name, roles."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('subject is demo-user', () => pm.expect(pm.response.json().data.subject).to.eql('demo-user'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "1. Sample records (DEMO)",
+      "item": [
+        {
+          "name": "Create record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records"
+            },
+            "description": "Creates a record (USER). Saves `recordId` and `recordVersion`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Postman record {{$timestamp}}\",\n  \"description\": \"Created from Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "const d = pm.response.json().data;",
+                  "pm.collectionVariables.set('recordId', d.id);",
+                  "pm.collectionVariables.set('recordVersion', d.version);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List records (paged, sorted)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records?page=0&size=20&sort=createdAt,desc",
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0",
+                  "description": "0-based page"
+                },
+                {
+                  "key": "size",
+                  "value": "20",
+                  "description": "1-100"
+                },
+                {
+                  "key": "sort",
+                  "value": "createdAt,desc",
+                  "description": "name | createdAt, asc | desc"
+                }
+              ]
+            },
+            "description": "Active records. `page` is 0-based; `size` 1-100; `sort` is `name` or `createdAt`, optionally `,asc`/`,desc`."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get record",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records/{{recordId}}"
+            },
+            "description": "One active record."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set('recordVersion', pm.response.json().data.version);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update record (current version)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records/{{recordId}}"
+            },
+            "description": "Full replace with optimistic locking: send the current `version`. An omitted `description` is cleared.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Renamed in Postman {{$timestamp}}\",\n  \"description\": \"Updated\",\n  \"version\": {{recordVersion}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set('recordVersion', pm.response.json().data.version);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update with a stale version \u2192 409",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records/{{recordId}}"
+            },
+            "description": "Version 0 after an update: 409 CONCURRENT_MODIFICATION.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Stale {{$timestamp}}\",\n  \"version\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 409', () => pm.response.to.have.status(409));",
+                  "pm.test('CONCURRENT_MODIFICATION', () => pm.expect(pm.response.json().errorCode).to.eql('CONCURRENT_MODIFICATION'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Create with a blank name \u2192 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records"
+            },
+            "description": "Validation error envelope with field errors.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"  \"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 400', () => pm.response.to.have.status(400));",
+                  "pm.test('VALIDATION_FAILED', () => pm.expect(pm.response.json().errorCode).to.eql('VALIDATION_FAILED'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Create with Idempotency-Key (send twice)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{idempotencyKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records"
+            },
+            "description": "Send this twice: the second answer is the stored first one (header `Idempotency-Replayed: true`), and only one record exists. Change the collection variable `idempotencyKey` for a new request (record names must be unique among active records).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Idempotent record {{idempotencyKey}}\",\n  \"description\": \"Same key, same request\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('201 (first) or replay', () => pm.expect(pm.response.code).to.eql(201));",
+                  "console.log('Replayed:', pm.response.headers.get('Idempotency-Replayed'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Delete record as USER \u2192 403",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records/{{recordId}}"
+            },
+            "description": "Delete needs ADMIN."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Delete record (ADMIN)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records/{{recordId}}"
+            },
+            "description": "Soft delete.",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get deleted record \u2192 404",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records/{{recordId}}"
+            },
+            "description": "Deleted records are not found."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Restore record (ADMIN)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records/{{recordId}}/restore"
+            },
+            "description": "Clears the deletion.",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. Export and operations",
+      "item": [
+        {
+          "name": "Start export",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sample-records/export"
+            },
+            "description": "Starts a long-running export: 202 with `Location` and the operation. Saves `operationId`."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 202', () => pm.response.to.have.status(202));",
+                  "const d = pm.response.json().data;",
+                  "pm.collectionVariables.set('operationId', d.operationId);",
+                  "pm.test('QUEUED v1', () => { pm.expect(d.status).to.eql('QUEUED'); pm.expect(d.version).to.eql(1); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get operation (poll)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/operations/{{operationId}}"
+            },
+            "description": "QUEUED \u2192 RUNNING \u2192 SUCCEEDED/FAILED; `version` rises on each change. Live pushes: STOMP `/topic/operations/{id}` on ws://localhost:8080/ws (not supported by Postman's HTTP requests)."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "console.log('status', pm.response.json().data.status, 'version', pm.response.json().data.version);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get operation as ADMIN",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/operations/{{operationId}}"
+            },
+            "description": "An ADMIN reads any operation.",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Unknown operation \u2192 404",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/operations/00000000-0000-7000-8000-000000000000"
+            },
+            "description": "OPERATION_NOT_FOUND."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3. Security checks",
+      "item": [
+        {
+          "name": "No token \u2192 401",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/me"
+            },
+            "description": "401 UNAUTHENTICATED with WWW-Authenticate: Bearer.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 401', () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4. Management port (8081)",
+      "item": [
+        {
+          "name": "Readiness",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{managementUrl}}/actuator/health/readiness"
+            },
+            "description": "UP with the database, migrations and the status listener.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Liveness",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{managementUrl}}/actuator/health/liveness"
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Health details (ADMIN)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{managementUrl}}/actuator/health"
+            },
+            "description": "ADMIN sees components and details.",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Prometheus metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{managementUrl}}/actuator/prometheus"
+            },
+            "description": "Look for seed_operation_total, seed_job_duration_seconds, seed_ws_sessions_active.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Loggers (ADMIN)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{managementUrl}}/actuator/loggers"
+            },
+            "description": "Needs an ADMIN token.",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
