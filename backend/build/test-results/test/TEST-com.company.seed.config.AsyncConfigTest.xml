@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.company.seed.config.AsyncConfigTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-17T11:35:17.360Z" hostname="IDXPUNMAC054L.local" time="0.003">
-  <properties/>
-  <testcase name="aTaskRunsWithTheSubmittersContextAndLeavesTheThreadClean()" classname="com.company.seed.config.AsyncConfigTest" time="0.003"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

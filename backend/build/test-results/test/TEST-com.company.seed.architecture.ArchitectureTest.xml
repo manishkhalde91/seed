@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.company.seed.architecture.ArchitectureTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-17T11:35:09.997Z" hostname="IDXPUNMAC054L.local" time="0.716">
-  <properties/>
-  <testcase name="allSeedRules" classname="com.company.seed.architecture.ArchitectureTest" time="0.716"/>
-  <system-out><![CDATA[11:35:10.000 [Test worker] INFO com.tngtech.archunit.core.PluginLoader -- Detected Java version 21.0.13.0.3
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
